@@ -3,10 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phạm Thanh Tùng - Kiến Trúc Sư</title>
-	<link rel="icon" href="https://yt3.googleusercontent.com/ytc/AIdro_nsKsjDcA7yf79sxXd74-cQ4A2xi7Szi3D9HLWPcH6I0uA=s160-c-k-c0x00ffffff-no-rj">
+    <title>Shanco Việt Nam - Thiết kế tương lai bền vững</title>
+    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgAQMAAABJtOi3AAAABlBMVEX///8PPHhzsxSyAAAAAXRSTlMAQObYZgAAAEJJREFUeAF1xMUBgDAUA1Cc4x+BTdrJ8D3opEiC1yIvQSqi8KwDGqREyA5qIiEMWcigt0RmsgfpLpIGpAbIxx5FdQdTDTC5XkVhNQAAAABJRU5ErkJggg==" />
+
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <style>
+        :root {
+            --primary-color: #0D6EFD;
+            --secondary-color: #198754;
+            --dark-color: #212529;
+            --light-color: #f8f9fa;
+            --accent-color: #FFC107;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -17,359 +28,586 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: #333;
-            background-color: #f9f9f9;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            margin-bottom: 1rem;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+        }
+
+        ul {
+            list-style: none;
         }
 
         .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: auto;
-            overflow: hidden;
-            padding: 0 20px;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/api/placeholder/1200/800') no-repeat center center/cover;
-            color: #fff;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            letter-spacing: 1px;
-        }
-
-        .hero p {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-            letter-spacing: 0.5px;
-        }
-
-        .btn {
-            display: inline-block;
-            background: #006699;
-            color: #fff;
-            padding: 12px 30px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1.1rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            margin: 10px;
-        }
-
-        .btn:hover {
-            background: #004d73;
-            transform: translateY(-3px);
-        }
-button:disabled,
-button[disabled]{
-  border: 1px solid #999999;
-  background-color: #cccccc;
-  color: #666666;
-}
-        .social-links {
-            margin-top: 30px;
-        }
-
-        .social-links a {
-            display: inline-block;
-            margin: 0 15px;
-            color: #fff;
-            font-size: 1.5rem;
-            transition: transform 0.3s;
-        }
-
-        .social-links a:hover {
-            transform: translateY(-5px);
-        }
-
-        /* About Section */
-        .about {
-            padding: 100px 0;
-            background: #fff;
-        }
-
-        .about-container {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .about-text {
-            flex: 1;
-            padding: 0 20px;
-            min-width: 300px;
-        }
-
-        .about-image {
-            flex: 1;
-            min-width: 300px;
-            padding: 20px;
-        }
-
-        .about-image img {
             width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: 80px 0;
         }
 
         .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-            color: #006699;
+            text-align: center;
+            margin-bottom: 50px;
             position: relative;
-            padding-bottom: 15px;
         }
 
         .section-title::after {
             content: '';
             position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 100px;
-            height: 4px;
-            background: #006699;
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary-color);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
-        .about p {
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .logo span {
+            color: var(--secondary-color);
+        }
+
+        .nav-menu {
+            display: flex;
+        }
+
+        .nav-item {
+            margin-left: 30px;
+        }
+
+        .nav-link {
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        .mobile-nav-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--dark-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/api/placeholder/1920/1080');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
             margin-bottom: 20px;
-            font-size: 1.1rem;
-            line-height: 1.8;
+            font-weight: 700;
         }
 
-        /* Services Section */
-        .services {
-            padding: 100px 0;
-            background: #f9f9f9;
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 30px;
+            font-weight: 400;
         }
 
-        .services-container {
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 500;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-right: 15px;
+            margin-bottom: 15px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: white;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--primary-color);
+        }
+
+        /* About Section */
+        .about {
+            background-color: var(--light-color);
+        }
+
+        .about-content {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 50px;
+            justify-content: space-between;
         }
 
-        .service-card {
-            background: #fff;
+        .about-box {
+            flex-basis: 30%;
+            margin-bottom: 30px;
+            text-align: center;
             padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            flex: 1;
-            min-width: 300px;
-            transition: transform 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            background-color: white;
+            transition: all 0.3s ease;
         }
 
-        .service-card:hover {
+        .about-box:hover {
             transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
 
-        .service-icon {
-            font-size: 3rem;
-            color: #006699;
+        .about-box i {
+            font-size: 40px;
             margin-bottom: 20px;
+            color: var(--primary-color);
         }
 
-        .service-card h3 {
+        .about-box h3 {
             font-size: 1.5rem;
             margin-bottom: 15px;
-            color: #333;
         }
 
-        .service-card p {
-            font-size: 1rem;
-            color: #666;
+        .founder {
+            margin-top: 50px;
+            text-align: center;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
 
-        /* Portfolio Section */
-        .portfolio {
-            padding: 100px 0;
-            background: #fff;
+        .founder img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
         }
 
-        .portfolio-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+        .core-values {
             margin-top: 50px;
         }
 
-        .portfolio-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 10px;
-            height: 250px;
-        }
-
-        .portfolio-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
-
-        .portfolio-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 102, 153, 0.8);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: opacity 0.3s;
-            padding: 20px;
-            color: #fff;
+        .core-values h3 {
             text-align: center;
-        }
-
-        .portfolio-item:hover .portfolio-overlay {
-            opacity: 1;
-        }
-
-        .portfolio-item:hover .portfolio-image {
-            transform: scale(1.1);
-        }
-
-        .portfolio-overlay h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
-
-        .portfolio-overlay p {
-            font-size: 1rem;
-        }
-
-        /* Testimonials */
-        .testimonials {
-            padding: 100px 0;
-            background: #f9f9f9;
-            text-align: center;
-        }
-
-        .testimonial-container {
-            max-width: 800px;
-            margin: 50px auto 0;
-        }
-
-        .testimonial {
-            background: #fff;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             margin-bottom: 30px;
         }
 
-        .testimonial-text {
-            font-size: 1.1rem;
-            font-style: italic;
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .value-item {
+            padding: 20px;
+            text-align: center;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .value-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .value-item i {
+            font-size: 30px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-item {
+            padding: 30px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .service-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-item i {
+            font-size: 40px;
+            color: var(--primary-color);
             margin-bottom: 20px;
-            line-height: 1.8;
         }
 
-        .testimonial-author {
-            font-weight: bold;
-            color: #006699;
+        .service-item h3 {
+            margin-bottom: 15px;
         }
 
-        .testimonial-position {
-            color: #666;
-            font-size: 0.9rem;
+        /* Expertise Section */
+        .expertise {
+            background-color: var(--light-color);
+        }
+
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .expertise-item {
+            padding: 25px;
+            border-radius: 8px;
+            background-color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .expertise-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .expertise-item h3 {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .expertise-item h3 i {
+            margin-right: 10px;
+        }
+
+        .expertise-list {
+            margin-top: 15px;
+        }
+
+        .expertise-list li {
+            padding: 5px 0;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .expertise-list li::before {
+            content: '\f105';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+        }
+
+        /* Projects Section */
+        .projects .container {
+            text-align: center;
+        }
+
+        .projects-slider {
+            margin: 0 auto;
+            max-width: 1000px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .slide {
+            min-width: 100%;
+            position: relative;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .slide-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 20px;
+            text-align: left;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        .slider-nav {
+            margin-top: 20px;
+        }
+
+        .slider-nav button {
+            background: var(--primary-color);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            margin: 0 5px;
+            transition: all 0.3s ease;
+        }
+
+        .slider-nav button:hover {
+            background: var(--dark-color);
+        }
+
+        /* Insights Section */
+        .insights {
+            background-color: var(--light-color);
+        }
+
+        .insights-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .video-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-thumbnail {
+            position: relative;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #eee;
+            color: var(--dark-color);
+        }
+
+        .video-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .play-icon {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .play-icon:hover {
+            background-color: var(--secondary-color);
+            transform: scale(1.1);
+        }
+
+        .video-content {
+            padding: 20px;
+        }
+
+        .insights-btn {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            color: white;
+            border: 2px solid var(--secondary-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: transparent;
+            color: var(--secondary-color);
         }
 
         /* Contact Section */
         .contact {
-            padding: 100px 0;
-            background: #fff;
+            background-color: white;
         }
 
-        .contact-container {
+        .contact-wrapper {
             display: flex;
             flex-wrap: wrap;
-            gap: 50px;
-            margin-top: 50px;
+            justify-content: space-between;
         }
 
         .contact-info {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .contact-info-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-
-        .contact-icon {
-            font-size: 1.5rem;
-            color: #006699;
-            margin-right: 20px;
-            width: 50px;
-            height: 50px;
-            background: #f0f8ff;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .contact-text h3 {
-            font-size: 1.2rem;
-            margin-bottom: 5px;
-        }
-
-        .contact-text p {
-            color: #666;
+            flex-basis: 48%;
         }
 
         .contact-form {
-            flex: 1;
-            min-width: 300px;
+            flex-basis: 48%;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            margin-right: 15px;
+        }
+
+        .info-details h4 {
+            margin-bottom: 5px;
         }
 
         .form-group {
             margin-bottom: 20px;
         }
 
-        .form-control {
+        .form-input {
             width: 100%;
-            padding: 15px;
+            padding: 12px 15px;
             border: 1px solid #ddd;
             border-radius: 5px;
-            font-size: 1rem;
+            font-size: 16px;
+            transition: all 0.3s ease;
         }
 
-        textarea.form-control {
-            height: 150px;
+        .form-input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 5px rgba(13, 110, 253, 0.3);
+        }
+
+        textarea.form-input {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .btn-submit {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--dark-color);
+        }
+
+        .map-container {
+            margin-top: 40px;
+            height: 300px;
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
 
         /* Footer */
-        footer {
-            background: #001a33;
-            color: #fff;
+        .footer {
+            background-color: var(--dark-color);
+            color: white;
             padding: 50px 0 20px;
         }
 
@@ -377,341 +615,653 @@ button[disabled]{
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
-            gap: 30px;
+        }
+
+        .footer-column {
+            flex-basis: 30%;
             margin-bottom: 30px;
         }
 
-        .footer-section {
-            flex: 1;
-            min-width: 250px;
-        }
-
-        .footer-section h3 {
-            font-size: 1.5rem;
+        .footer-column h3 {
             margin-bottom: 20px;
-            color: #fff;
             position: relative;
             padding-bottom: 10px;
         }
 
-        .footer-section h3::after {
+        .footer-column h3::after {
             content: '';
             position: absolute;
             left: 0;
             bottom: 0;
             width: 50px;
             height: 2px;
-            background: #006699;
+            background-color: var(--primary-color);
         }
 
-        .footer-section p {
-            margin-bottom: 15px;
-            color: #ccc;
+        .footer-links li {
+            margin-bottom: 10px;
         }
 
         .footer-links a {
-            display: block;
-            color: #ccc;
-            text-decoration: none;
-            margin-bottom: 10px;
-            transition: color 0.3s;
+            color: #bbb;
+            transition: all 0.3s ease;
         }
 
         .footer-links a:hover {
-            color: #fff;
+            color: white;
+            padding-left: 5px;
         }
 
-        .footer-bottom {
+        .social-links {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            margin-right: 10px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
             text-align: center;
             padding-top: 20px;
-            border-top: 1px solid #002d4d;
-            color: #ccc;
-            font-size: 0.9rem;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            color: #bbb;
         }
 
-        /* Responsive */
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 99;
+            opacity: 0;
+            transition: all 0.3s ease;
+            visibility: hidden;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--dark-color);
+            transform: translateY(-5px);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .navbar-container {
+                padding: 15px;
+            }
+
+            .hero-title {
+                font-size: 2.8rem;
+            }
+
+            .about-box {
+                flex-basis: 48%;
+            }
+
+            .contact-info, .contact-form {
+                flex-basis: 100%;
+            }
+
+            .contact-form {
+                margin-top: 40px;
+            }
+
+            .footer-column {
+                flex-basis: 48%;
+            }
+        }
+
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
+            .nav-menu {
+                position: fixed;
+                top: -100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                padding: 30px 0;
+                transition: all 0.4s ease;
+                flex-direction: column;
+                align-items: center;
             }
 
-            .hero p {
-                font-size: 1.2rem;
+            .nav-menu.active {
+                top: 70px;
             }
 
-            .section-title {
-                font-size: 2rem;
+            .nav-item {
+                margin: 10px 0;
             }
 
-            .portfolio-container {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            .mobile-nav-toggle {
+                display: block;
+            }
+
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .about-box {
+                flex-basis: 100%;
+            }
+
+            .services-grid, .expertise-grid, .insights-container {
+                grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+            }
+
+            .footer-column {
+                flex-basis: 100%;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Hero Section -->
-   <section class="hero" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://scontent.fhph2-1.fna.fbcdn.net/v/t39.30808-6/383201122_3261049917520288_1260310390408831088_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=WoEK3P_L3qUQ7kNvwFNYhzN&_nc_oc=AdmXelnoR39Ejca3xRxpuL2hGQvdhvk66LqmvPdGNltx7elooPD9aLg9IWBgGhG8cRdVnCT1qxXaubQOv8VKo9_u&_nc_zt=23&_nc_ht=scontent.fhph2-1.fna&_nc_gid=HeLD_hODe_VbjPRLiePcrw&oh=00_AfFoNxPGFUz-rabz1uMcheIsvaTFaND9G2o1W3yKLUFgGw&oe=681372AE')">
-           <div class="hero-content">
-            <h1>Phạm Thanh Tùng</h1>
-            <p>Kiến trúc sư chuyên nghiệp với hơn 15 năm kinh nghiệm</p>
-            <div>
-                <a href="#portfolio" class="btn">Xem dự án</a>
-                <a href="#contact" class="btn">Liên hệ</a>
-            </div>
-            <div class="social-links">
-                <a href="https://www.facebook.com/phamthanhtungkts" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.youtube.com/@KTSPTT" target="_blank"><i class="fab fa-youtube"></i></a>
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-            </div>
-        </div>
-    </section>
+<!-- Header Navigation -->
+<header class="navbar">
+    <div class="container navbar-container">
+        <a href="#" class="logo">Shanco <span>Việt Nam</span></a>
+        <nav>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#about" class="nav-link">Về Chúng Tôi</a></li>
+                <li class="nav-item"><a href="#services" class="nav-link">Dịch Vụ</a></li>
+                <li class="nav-item"><a href="#expertise" class="nav-link">Chuyên Môn</a></li>
+                <li class="nav-item"><a href="#projects" class="nav-link">Dự Án</a></li>
+                <li class="nav-item"><a href="#insights" class="nav-link">Kiến Thức</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Liên Hệ</a></li>
+            </ul>
+            <button class="mobile-nav-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </div>
+</header>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="about-container">
-                <div class="about-text">
-                    <h2 class="section-title">Giới thiệu</h2>
-                    <p>
-                        Với hơn 15 năm kinh nghiệm trong lĩnh vực kiến trúc và thiết kế, Phạm Thanh Tùng đã không ngừng khẳng định dấu ấn cá nhân qua hàng loạt công trình dân dụng, thương mại và công cộng. Sở hữu tư duy sáng tạo, kỹ năng chuyên môn vững vàng và sự nhạy bén trong việc nắm bắt xu hướng, anh luôn mang đến những giải pháp thiết kế hài hòa giữa thẩm mỹ, công năng và bền vững.
-                    </p>
-                    <p>
-                        Suốt chặng đường sự nghiệp, anh đã tham gia và dẫn dắt nhiều dự án quy mô lớn, từ quy hoạch tổng thể khu đô thị, thiết kế khu nghỉ dưỡng cao cấp cho đến cải tạo công trình lịch sử. Với phương châm "Kiến tạo không gian sống lý tưởng, truyền cảm hứng bền lâu", anh không chỉ chú trọng vào vẻ đẹp hình thức mà còn đặc biệt quan tâm đến trải nghiệm người sử dụng và giá trị cộng đồng mà mỗi công trình mang lại.
-                    </p>
-                    <p>
-                        Đặt chất lượng, sự tỉ mỉ và tinh thần đổi mới lên hàng đầu, Phạm Thanh Tùng hiện là Kiến trúc sư chủ chốt tại Công ty Cổ phần Tư vấn Đầu tư xây dựng Shanco Việt Nam và là đối tác tin cậy của các chủ đầu tư trong và ngoài nước, đồng thời là người truyền cảm hứng cho thế hệ kiến trúc sư trẻ trên hành trình phát triển nghề nghiệp.
-                    </p>
-                </div>
-                <div class="about-image">
-                    <img src="https://scontent.fhph1-1.fna.fbcdn.net/v/t39.30808-6/473800772_3588565304768746_6098528955621965410_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=Pp2_pRj0gZEQ7kNvwEnq5va&_nc_oc=AdkkkHpdJnNGOmeikYZFoYeQ6nexwrdVch00_kle6mDSasDfwvj3lJ2Qmq0sD2zvOWO1JoJfAaaI2WHKYOMwas6e&_nc_zt=23&_nc_ht=scontent.fhph1-1.fna&_nc_gid=hj9p2oTnFItG-RemZbOFHg&oh=00_AfGCm-rEu7uBhqJ6Qg49ozeLmibazuzSEasnr4-tkyv2vw&oe=68136B49" alt="Phạm Thanh Tùng - Kiến Trúc Sư">
-                </div>
+<!-- Hero Section -->
+<section class="hero" id="home" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://scontent.fhph1-1.fna.fbcdn.net/v/t39.30808-6/489468106_3656769924614950_7723283961796980474_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=qm6ndG852tYQ7kNvwGYJrOL&_nc_oc=Adl-BTZQYq_fZG_IKicdrwexbwMYIRFMVYyLrPPh7xS64ZD419f90cag7ZV8HBQ4_IsVWt6gzViUGzw7lRKOW0CI&_nc_zt=23&_nc_ht=scontent.fhph1-1.fna&_nc_gid=adXIRwOu7TmCFVknauE5gw&oh=00_AfFN2YhdugqCQcMarnxU-Qr0p_v1ZX3uYlGrEnQLwetyMQ&oe=68139DB5')">
+    <div class="container">
+        <div class="hero-content" data-aos="fade-up">
+            <h1 class="hero-title">Shanco Việt Nam – Thiết kế tương lai bền vững</h1>
+            <p class="hero-subtitle">Ứng dụng công nghệ BIM và giải pháp kiến trúc xanh, chúng tôi mang đến những công trình tối ưu, hiện đại và trường tồn.</p>
+            <div class="hero-btns">
+                <a href="#services" class="btn btn-primary">Khám phá dịch vụ</a>
+                <a href="#contact" class="btn btn-outline">Liên hệ ngay</a>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="container">
-            <h2 class="section-title" style="text-align: center;">Dịch vụ</h2>
-            <div class="services-container">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-home"></i>
-                    </div>
-                    <h3>Thiết kế nhà ở</h3>
-                    <p>Tạo nên không gian sống lý tưởng phù hợp với phong cách, nhu cầu và ngân sách của gia đình bạn.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-building"></i>
-                    </div>
-                    <h3>Công trình thương mại</h3>
-                    <p>Thiết kế văn phòng, trung tâm thương mại, khách sạn với giải pháp tối ưu không gian và hiệu quả kinh doanh.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-city"></i>
-                    </div>
-                    <h3>Quy hoạch đô thị</h3>
-                    <p>Nghiên cứu và phát triển quy hoạch đô thị bền vững, tạo nên môi trường sống hài hòa với thiên nhiên.</p>
-                </div>
+<!-- About Section -->
+<section class="section about" id="about">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Về Chúng Tôi</h2>
+        <div class="about-content">
+            <div class="about-box" data-aos="fade-up" data-aos-delay="100">
+                <i class="fas fa-rocket"></i>
+                <h3>Sứ mệnh</h3>
+                <p>Shanco Việt Nam cam kết kiến tạo không gian sống hài hòa, bền vững và ứng dụng công nghệ tiên tiến trong từng công trình.</p>
+            </div>
+            <div class="about-box" data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-eye"></i>
+                <h3>Tầm nhìn</h3>
+                <p>Trở thành đơn vị tư vấn thiết kế kiến trúc và xây dựng hàng đầu, tiên phong ứng dụng BIM và kiến trúc xanh tại Việt Nam.</p>
+            </div>
+            <div class="about-box" data-aos="fade-up" data-aos-delay="300">
+                <i class="fas fa-award"></i>
+                <h3>Giá trị cốt lõi</h3>
+                <p>Chất lượng làm gốc, sáng tạo không ngừng, bền vững với môi trường, công nghệ dẫn lối.</p>
             </div>
         </div>
-    </section>
 
-    <!-- Portfolio Section 
-    <section id="portfolio" class="portfolio">
-        <div class="container">
-            <h2 class="section-title" style="text-align: center;">Dự án tiêu biểu</h2>
-            <div class="portfolio-container">
-                <div class="portfolio-item">
-                    <img src="/api/placeholder/600/450" alt="Dự án 1" class="portfolio-image">
-                    <div class="portfolio-overlay">
-                        <h3>Khu đô thị Green Park</h3>
-                        <p>Quy hoạch tổng thể khu đô thị sinh thái</p>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="/api/placeholder/600/450" alt="Dự án 2" class="portfolio-image">
-                    <div class="portfolio-overlay">
-                        <h3>Sky View Villa</h3>
-                        <p>Biệt thự nghỉ dưỡng cao cấp</p>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="/api/placeholder/600/450" alt="Dự án 3" class="portfolio-image">
-                    <div class="portfolio-overlay">
-                        <h3>Modern Office Complex</h3>
-                        <p>Tòa nhà văn phòng đa năng</p>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="/api/placeholder/600/450" alt="Dự án 4" class="portfolio-image">
-                    <div class="portfolio-overlay">
-                        <h3>Sunshine Hotel</h3>
-                        <p>Khách sạn 5 sao tại Nha Trang</p>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="/api/placeholder/600/450" alt="Dự án 5" class="portfolio-image">
-                    <div class="portfolio-overlay">
-                        <h3>Heritage Renovation</h3>
-                        <p>Dự án cải tạo di sản kiến trúc</p>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="/api/placeholder/600/450" alt="Dự án 6" class="portfolio-image">
-                    <div class="portfolio-overlay">
-                        <h3>Eco Apartment</h3>
-                        <p>Chung cư xanh thân thiện môi trường</p>
-                    </div>
-                </div>
-            </div>
+        <div class="founder" data-aos="fade-up">
+            <img src="https://scontent.fhph1-1.fna.fbcdn.net/v/t39.30808-6/473800772_3588565304768746_6098528955621965410_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=Pp2_pRj0gZEQ7kNvwEnq5va&_nc_oc=AdkkkHpdJnNGOmeikYZFoYeQ6nexwrdVch00_kle6mDSasDfwvj3lJ2Qmq0sD2zvOWO1JoJfAaaI2WHKYOMwas6e&_nc_zt=23&_nc_ht=scontent.fhph1-1.fna&_nc_gid=hj9p2oTnFItG-RemZbOFHg&oh=00_AfGCm-rEu7uBhqJ6Qg49ozeLmibazuzSEasnr4-tkyv2vw&oe=68136B49" alt="KTS Phạm Thanh Tùng">
+            <h3>KTS Phạm Thanh Tùng</h3>
+            <p>Dưới sự dẫn dắt của KTS Phạm Thanh Tùng – chuyên gia giàu kinh nghiệm trong thiết kế kiến trúc và ứng dụng BIM – Shanco Việt Nam không ngừng nâng cao tiêu chuẩn ngành xây dựng hiện đại.</p>
         </div>
-    </section>
--->
-    <!-- Testimonials Section 
-    <section id="testimonials" class="testimonials">
-        <div class="container">
-            <h2 class="section-title" style="text-align: center;">Khách hàng nói gì</h2>
-            <div class="testimonial-container">
-                <div class="testimonial">
-                    <p class="testimonial-text">
-                        "Phạm Thanh Tùng không chỉ thiết kế cho chúng tôi một ngôi nhà mà còn kiến tạo nên một không gian sống đậm chất riêng, nơi mỗi góc nhỏ đều được tính toán kỹ lưỡng và mang đến cảm giác thư thái, gần gũi."
-                    </p>
-                    <div class="testimonial-author">Nguyễn Văn A</div>
-                    <div class="testimonial-position">Chủ đầu tư dự án biệt thự Vinhomes</div>
-                </div>
-                <div class="testimonial">
-                    <p class="testimonial-text">
-                        "Làm việc với KTS Phạm Thanh Tùng là một trải nghiệm tuyệt vời. Anh không chỉ lắng nghe mà còn hiểu sâu về nhu cầu của chúng tôi, từ đó đưa ra những giải pháp sáng tạo vượt xa mong đợi ban đầu."
-                    </p>
-                    <div class="testimonial-author">Trần Thị B</div>
-                    <div class="testimonial-position">Giám đốc Công ty Bất động sản XYZ</div>
-                </div>
-            </div>
-        </div>
-    </section>
--->
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title" style="text-align: center;">Liên hệ</h2>
-            <div class="contact-container">
-                <div class="contact-info">
-                  <!--   <div class="contact-info-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h3>Địa chỉ</h3>
-                            <p>Số 123, Đường ABC, Quận XYZ, Hà Nội</p>
-                        </div>
-                    </div> -->
-                  <!--  <div class="contact-info-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                          <div class="contact-text">
-                            <h3>Điện thoại</h3>
-                            <p>+84 123 456 789</p>
-                        </div>
-						
-                    </div>-->
-                    <div class="contact-info-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h3>Email</h3>
-                            <p>shanco.vn@gmail.com</p>
-                        </div>
-                    </div>
-                    <div class="contact-info-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h3>Giờ làm việc</h3>
-                            <p>Thứ hai - Thứ sáu: 8:00 - 17:00</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="contact-form">
-                    <form>
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Họ và tên">
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Email">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Số điện thoại">
-                        </div>
-                        <div class="form-group">
-                            <textarea class="form-control" placeholder="Nội dung"></textarea>
-                        </div>
-                        <button type="submit" class="btn" disabled>Gửi tin nhắn</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-container">
-                <div class="footer-section">
-                    <h3>Phạm Thanh Tùng</h3>
-                    <p>Kiến trúc sư chuyên nghiệp với hơn 15 năm kinh nghiệm trong lĩnh vực thiết kế và tư vấn kiến trúc.</p>
-                    <div class="social-links" style="margin-top: 20px;">
-                        <a href="https://www.facebook.com/phamthanhtungkts" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.youtube.com/@KTSPTT" target="_blank"><i class="fab fa-youtube"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
+        <div class="core-values" data-aos="fade-up">
+            <h3>Giá trị cốt lõi của chúng tôi</h3>
+            <div class="values-grid">
+                <div class="value-item">
+                    <i class="fas fa-gem"></i>
+                    <h4>Chất lượng làm gốc</h4>
+                    <p>Cam kết mang đến sản phẩm hoàn hảo, đáp ứng mọi yêu cầu khắt khe.</p>
                 </div>
-                <div class="footer-section">
-                    <h3>Dịch vụ</h3>
-                    <div class="footer-links">
-                        <a href="#">Thiết kế nhà ở</a>
-                        <a href="#">Thiết kế công trình thương mại</a>
-                        <a href="#">Thiết kế nội thất</a>
-                        <a href="#">Quy hoạch đô thị</a>
-                        <a href="#">Tư vấn xây dựng</a>
-                    </div>
+                <div class="value-item">
+                    <i class="fas fa-lightbulb"></i>
+                    <h4>Sáng tạo không ngừng</h4>
+                    <p>Luôn đổi mới, tìm kiếm giải pháp thiết kế đột phá và độc đáo.</p>
                 </div>
-                <div class="footer-section">
-                    <h3>Liên kết nhanh</h3>
-                    <div class="footer-links">
-                        <a href="#about">Giới thiệu</a>
-                        <a href="#services">Dịch vụ</a>
-                        <a href="#portfolio">Dự án</a>
-                        <a href="#testimonials">Đánh giá</a>
-                        <a href="#contact">Liên hệ</a>
-                    </div>
+                <div class="value-item">
+                    <i class="fas fa-leaf"></i>
+                    <h4>Bền vững với môi trường</h4>
+                    <p>Thiết kế hướng đến tương lai, thân thiện và hài hòa với thiên nhiên.</p>
                 </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Công ty Cổ phần Tư vấn Đầu tư xây dựng Shanco Việt Nam.</p>
+                <div class="value-item">
+                    <i class="fas fa-microchip"></i>
+                    <h4>Công nghệ dẫn lối</h4>
+                    <p>Ứng dụng BIM và công nghệ hiện đại trong mọi dự án.</p>
+                </div>
             </div>
         </div>
-    </footer>
+    </div>
+</section>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
-    <script>
-        // Hiệu ứng cuộn mượt cho các liên kết
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+<!-- Services Section -->
+<section class="section services" id="services">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Dịch Vụ</h2>
+        <div class="services-grid">
+            <div class="service-item" data-aos="fade-up" data-aos-delay="100">
+                <i class="fas fa-home"></i>
+                <h3>Thiết kế kiến trúc tổng thể</h3>
+                <p>Nhà ở, biệt thự, công trình thương mại với phong cách hiện đại và tiện nghi.</p>
+            </div>
+            <div class="service-item" data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-cube"></i>
+                <h3>Ứng dụng BIM chuyên sâu</h3>
+                <p>Quản lý dự án từ ý tưởng đến thi công, tối ưu hóa quá trình xây dựng.</p>
+            </div>
+            <div class="service-item" data-aos="fade-up" data-aos-delay="300">
+                <i class="fas fa-comments-dollar"></i>
+                <h3>Tư vấn xây dựng và đầu tư</h3>
+                <p>Đảm bảo tối ưu chi phí, tiến độ và chất lượng trong toàn bộ dự án.</p>
+            </div>
+            <div class="service-item" data-aos="fade-up" data-aos-delay="400">
+                <i class="fas fa-seedling"></i>
+                <h3>Thiết kế công trình xanh</h3>
+                <p>Giải pháp bền vững, thân thiện môi trường, tiết kiệm năng lượng.</p>
+            </div>
+            <div class="service-item" data-aos="fade-up" data-aos-delay="500">
+                <i class="fas fa-tasks"></i>
+                <h3>Quản lý dự án</h3>
+                <p>Lập kế hoạch, điều phối thi công và giám sát chặt chẽ để đảm bảo dự án đúng tiến độ.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Expertise Section -->
+<section class="section expertise" id="expertise">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Lĩnh vực chuyên môn</h2>
+        <div class="expertise-grid">
+            <div class="expertise-item" data-aos="fade-up" data-aos-delay="100">
+                <h3><i class="fas fa-drafting-compass"></i> Nguyên tắc thiết kế kiến trúc</h3>
+                <p>Cam kết thực hiện theo triết lý thiết kế cốt lõi tạo nên các công trình xuất sắc:</p>
+                <ul class="expertise-list">
+                    <li>Công năng tối ưu cho người sử dụng</li>
+                    <li>Thẩm mỹ vượt thời gian</li>
+                    <li>Tỷ lệ hoàn hảo trong từng chi tiết</li>
+                    <li>Hài hòa với không gian xung quanh</li>
+                </ul>
+            </div>
+            <div class="expertise-item" data-aos="fade-up" data-aos-delay="200">
+                <h3><i class="fas fa-cubes"></i> Ứng dụng BIM</h3>
+                <p>Thành thạo các công cụ BIM hàng đầu trong ngành kiến trúc:</p>
+                <ul class="expertise-list">
+                    <li>Revit - Mô hình hóa thông tin công trình</li>
+                    <li>ArchiCAD - Thiết kế kiến trúc 3D</li>
+                    <li>Enscape - Thể hiện không gian thực tế</li>
+                    <li>Lumion - Render hình ảnh chất lượng cao</li>
+                </ul>
+            </div>
+            <div class="expertise-item" data-aos="fade-up" data-aos-delay="300">
+                <h3><i class="fas fa-leaf"></i> Thiết kế công trình xanh</h3>
+                <p>Áp dụng các nguyên tắc kiến trúc bền vững trong mọi dự án:</p>
+                <ul class="expertise-list">
+                    <li>Thiết kế thụ động tiết kiệm năng lượng</li>
+                    <li>Tối ưu ánh sáng tự nhiên</li>
+                    <li>Hệ thống thông gió tự nhiên</li>
+                    <li>Vật liệu thân thiện với môi trường</li>
+                </ul>
+            </div>
+            <div class="expertise-item" data-aos="fade-up" data-aos-delay="400">
+                <h3><i class="fas fa-paint-brush"></i> Xu hướng kiến trúc hiện đại</h3>
+                <p>Luôn cập nhật và áp dụng các trào lưu thiết kế mới nhất:</p>
+                <ul class="expertise-list">
+                    <li>Phong cách tối giản, đề cao công năng</li>
+                    <li>Công trình thông minh, tự động hóa</li>
+                    <li>Thiết kế thích ứng với biến đổi khí hậu</li>
+                    <li>Không gian mở, linh hoạt chức năng</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Projects Section -->
+<section class="section projects" id="projects">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Dự án tiêu biểu</h2>
+        <div class="projects-slider" data-aos="fade-up">
+            <div class="slides">
+                <div class="slide">
+                    <img src="imgs/img1.jpg" alt="Biệt thự sinh thái EcoHome">
+                    <div class="slide-content">
+                        <h3>Biệt thự sinh thái EcoHome</h3>
+                        <p>Ứng dụng BIM và thiết kế xanh tạo nên không gian sống hài hòa với thiên nhiên</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <img src="imgs/img3.jpg" alt="Tòa nhà văn phòng SMART Office">
+                    <div class="slide-content">
+                        <h3>Tòa nhà văn phòng SMART Office</h3>
+                        <p>Thiết kế mô hình thông minh, quản lý bằng BIM tối ưu không gian làm việc</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <img src="imgs/img2.jpg" alt="Khu nhà ở An Phú Garden">
+                    <div class="slide-content">
+                        <h3>Khu nhà ở An Phú Garden</h3>
+                        <p>Giải pháp chiếu sáng tự nhiên tối ưu, tạo không gian sống thoáng đãng</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-nav">
+                <button class="prev-slide"><i class="fas fa-chevron-left"></i></button>
+                <button class="next-slide"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Insights Section -->
+<section class="section insights" id="insights">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Chia sẻ kiến thức</h2>
+        <p class="text-center" data-aos="fade-up">Trích từ kênh KTSPTT:</p>
+        <div class="insights-container">
+            <div class="video-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="video-thumbnail">
+                    <img src="imgs/thumb1.jpg" alt="Video thumbnail">
+                        <a href="https://www.youtube.com/watch?v=q5H5i4jlxGg" target="_blank" class="play-icon">  <i class="fas fa-play"></i></a>
+                </div>
+                <div class="video-content">
+                    <h3>Mẫu nhà 7x24m Vạn Người Mê</h3>
+                    <p>Nhà của chị Xuân - Cẩm Phả - Quảng Ninh</p>
+                </div>
+            </div>
+            <div class="video-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="video-thumbnail">
+                    <img src="imgs/thumb2.jpg" alt="Video thumbnail">
+                    <a href="https://www.youtube.com/watch?v=rmZSSZgtksE&list=PLOW80VeYJvHSTNWwCTRD817zwAz3FNcMF" target="_blank" class="play-icon">  <i class="fas fa-play"></i></a>
+                </div>
+                <div class="video-content">
+                    <h3>Hiểu đúng về công việc thiết kế</h3>
+                    <p>Khám phá vai trò đa chiều của người làm kiến trúc trong bối cảnh hiện nay.</p>
+                </div>
+            </div>
+            <div class="video-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="video-thumbnail">
+                    <img src="imgs/thumb3.jpg" alt="Video thumbnail">
+                    <a href="https://www.youtube.com/watch?v=nynP6gaZObk&list=PLOW80VeYJvHQ77xdSwFpthcFJYKgwDF7s" target="_blank" class="play-icon">  <i class="fas fa-play"></i></a>
+                </div>
+                <div class="video-content">
+                    <h3>Tự Thiết Kế Nhà? Thị Trường 2025 Sẽ Thay Đổi Lớn!!!</h3>
+                    <p>Đón đầu sự thay đổi của thị trường thiết kế nhà ở và nắm bắt cơ hội tự thiết kế cho ngôi nhà của bạn.</p>
+                </div>
+            </div>
+        </div>
+        <div class="insights-btn" data-aos="fade-up">
+            <a href="https://www.youtube.com/@KTSPTT" target="_blank" class="btn btn-secondary">Xem thêm tại KTSPTT <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <p class="text-center" style="margin-top: 30px;" data-aos="fade-up">Chúng tôi tin rằng chia sẻ kiến thức là cách thúc đẩy sự tiến bộ của toàn ngành.</p>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="section contact" id="contact">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Liên hệ</h2>
+        <p class="text-center" style="margin-bottom: 40px;" data-aos="fade-up">Bạn có ý tưởng? Chúng tôi giúp bạn biến nó thành hiện thực.</p>
+        <div class="contact-wrapper">
+            <div class="contact-info" data-aos="fade-up" data-aos-delay="100">
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="info-details">
+                        <h4>Địa chỉ</h4>
+                        <p>Ng. 102 Đ. Trần Phú, P. Mộ Lao, Hà Đông, Hà Nội, Việt Nam</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="info-details">
+                        <h4>Email</h4>
+                        <p>SHANCO.VN@GMAIL.COM</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div class="info-details">
+                        <h4>Số điện thoại</h4>
+                        <p>0977.579.525 / 098.523.900</p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form" data-aos="fade-up" data-aos-delay="200">
+                <form id="contact-form">
+                    <div class="form-group">
+                        <input type="text" class="form-input" placeholder="Họ tên của bạn" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-input" placeholder="Email của bạn" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-input" placeholder="Nội dung tin nhắn" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">Gửi ngay</button>
+                </form>
+            </div>
+        </div>
+        <div class="map-container" data-aos="fade-up">
+            <!-- Placeholder for Google Maps -->
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5617.106387915018!2d105.78181217668197!3d20.979212180657804!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ad7cadd605f5%3A0x5bb6b7344e420be7!2sSHANCO%20VIET%20NAM!5e1!3m2!1svi!2s!4v1745743510981!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+<!--            <img src="/api/placeholder/1200/300" alt="Map" style="width: 100%; height: 100%; object-fit: cover;">-->
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Shanco Việt Nam</h3>
+                <p>Tự hào là đơn vị tiên phong trong ứng dụng BIM và kiến trúc xanh, mang đến những công trình bền vững và hiện đại.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Dịch vụ của chúng tôi</h3>
+                <ul class="footer-links">
+                    <li><a href="#services">Thiết kế kiến trúc tổng thể</a></li>
+                    <li><a href="#services">Ứng dụng BIM chuyên sâu</a></li>
+                    <li><a href="#services">Tư vấn xây dựng và đầu tư</a></li>
+                    <li><a href="#services">Thiết kế công trình xanh</a></li>
+                    <li><a href="#services">Quản lý dự án</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Liên kết nhanh</h3>
+                <ul class="footer-links">
+                    <li><a href="#home">Trang chủ</a></li>
+                    <li><a href="#about">Về chúng tôi</a></li>
+                    <li><a href="#projects">Dự án</a></li>
+                    <li><a href="#insights">Kiến thức</a></li>
+                    <li><a href="#contact">Liên hệ</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Shanco Việt Nam</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Back to Top Button -->
+<a href="#" class="back-to-top">
+    <i class="fas fa-arrow-up"></i>
+</a>
+
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+    // Initialize AOS Animation
+    document.addEventListener('DOMContentLoaded', function() {
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            mirror: false
+        });
+
+        // Mobile Navigation Toggle
+        const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+
+        mobileNavToggle.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+            const icon = mobileNavToggle.querySelector('i');
+            if (navMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Close mobile nav when clicking on a nav item
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                const icon = mobileNavToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
             });
         });
-    </script>
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Projects Slider
+        const slides = document.querySelector('.slides');
+        const slideItems = document.querySelectorAll('.slide');
+        const prevBtn = document.querySelector('.prev-slide');
+        const nextBtn = document.querySelector('.next-slide');
+        let currentSlide = 0;
+        const slideCount = slideItems.length;
+
+        function updateSlidePosition() {
+            slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+
+        nextBtn.addEventListener('click', () => {
+            currentSlide = (currentSlide + 1) % slideCount;
+            updateSlidePosition();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + slideCount) % slideCount;
+            updateSlidePosition();
+        });
+
+        // Auto slide every 5 seconds
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % slideCount;
+            updateSlidePosition();
+        }, 5000);
+
+        // Back to top button
+        const backToTopButton = document.querySelector('.back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+
+        // Sticky Header
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 50) {
+                navbar.style.padding = '10px 0';
+                navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.padding = '15px 0';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+
+        // Contact Form Submission (demo)
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Tính năng đang trong giai đoạn hoàn thiện, chúng tôi sẽ sớm cập nhật');
+                contactForm.reset();
+            });
+        }
+    });
+</script>
 </body>
 </html>
