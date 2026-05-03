@@ -2,7 +2,7 @@
   {
     "title": "BIM là gì? Tại sao ngành xây dựng Việt Nam cần BIM ngay bây giờ",
     "excerpt": "Building Information Modeling không chỉ là phần mềm vẽ 3D — đây là phương pháp quản lý toàn bộ vòng đời công trình từ ý tưởng đến vận hành. Tìm hiểu tại sao đây là xu hướng không thể bỏ qua.",
-    "url": "./bai-viet/bim-la-gi.html",
+    "url": "./bim-la-gi.html",
     "thumbnail": "",
     "icon": "🏗️",
     "tags": ["BIM", "Xu hướng"],
@@ -12,7 +12,7 @@
   {
     "title": "Thiết kế công trình xanh: Checklist 10 điểm cho chủ nhà",
     "excerpt": "Trước khi khởi công, hãy đảm bảo ngôi nhà của bạn đáp ứng các tiêu chí bền vững. Từ hướng nhà, vật liệu đến hệ thống thông gió — đây là danh sách kiểm tra bạn cần có.",
-    "url": "./bai-viet/checklist-cong-trinh-xanh.html",
+    "url": "./checklist-cong-trinh-xanh.html",
     "thumbnail": "",
     "icon": "🌿",
     "tags": ["Kiến trúc xanh", "Thiết kế"],
@@ -22,7 +22,7 @@
   {
     "title": "Revit vs ArchiCAD: Kiến trúc sư Việt Nam nên chọn phần mềm nào?",
     "excerpt": "Cả hai đều mạnh, nhưng mỗi phần mềm phù hợp với một quy mô và phong cách làm việc khác nhau. So sánh chi tiết dựa trên thực tế thị trường Việt Nam.",
-    "url": "./bai-viet/revit-vs-archicad.html",
+    "url": "./revit-vs-archicad.html",
     "thumbnail": "",
     "icon": "💻",
     "tags": ["BIM", "Thiết kế"],
@@ -32,7 +32,7 @@
   {
     "title": "5 sai lầm thường gặp khi tự xây nhà không có kiến trúc sư",
     "excerpt": "Tiết kiệm chi phí thiết kế nhưng tốn gấp đôi chi phí sửa chữa — đây là thực tế của nhiều gia đình. Những lỗi này hoàn toàn có thể tránh được nếu bạn biết trước.",
-    "url": "./bai-viet/sai-lam-tu-xay-nha.html",
+    "url": "./sai-lam-tu-xay-nha.html",
     "thumbnail": "",
     "icon": "⚠️",
     "tags": ["Xây dựng", "Thiết kế"],
@@ -42,7 +42,7 @@
   {
     "title": "Xu hướng kiến trúc 2025: Nhà thông minh, không gian linh hoạt",
     "excerpt": "Sau đại dịch, người Việt thay đổi hoàn toàn cách nhìn về không gian sống. Những xu hướng nào đang định hình thị trường thiết kế nhà ở năm 2025?",
-    "url": "./bai-viet/xu-huong-kien-truc-2025.html",
+    "url": "./xu-huong-kien-truc-2025.html",
     "thumbnail": "",
     "icon": "🔮",
     "tags": ["Xu hướng", "Thiết kế"],
