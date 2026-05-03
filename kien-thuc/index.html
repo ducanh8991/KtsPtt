@@ -1,322 +1,416 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kiến Thức – Shanco Việt Nam</title>
-  <meta name="description" content="Chia sẻ kiến thức về thiết kế kiến trúc, BIM, xây dựng xanh và xu hướng hiện đại từ Shanco Việt Nam." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --clr-bg: #0d0f0e;
-      --clr-surface: #141716;
-      --clr-card: #1a1d1b;
-      --clr-border: #2a2f2c;
-      --clr-text: #e8ede9;
-      --clr-muted: #7a8c7d;
-      --clr-accent: #a8c5a0;
-      --clr-accent-dark: #6a9b60;
-      --clr-white: #f0f5f1;
-      --font-display: 'Cormorant Garamond', Georgia, serif;
-      --font-body: 'DM Sans', sans-serif;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài Viết – Shanco Việt Nam</title>
+    <meta name="description" content="Chia sẻ kiến thức về thiết kế kiến trúc, BIM, xây dựng xanh và xu hướng hiện đại từ Shanco Việt Nam.">
+    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgAQMAAABJtOi3AAAABlBMVEX///8PPHhzsxSyAAAAAXRSTlMAQObYZgAAAEJJREFUeAF1xMUBgDAUA1Cc4x+BTdrJ8D3opEiC1yIvQSqi8KwDGqREyA5qIiEMWcigt0RmsgfpLpIGpAbIxx5FdQdTDTC5XkVhNQAAAABJRU5ErkJggg=="/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <style>
+        :root {
+            --primary-color: #0D6EFD;
+            --secondary-color: #198754;
+            --dark-color: #212529;
+            --light-color: #f8f9fa;
+            --accent-color: #FFC107;
+        }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6; color: #333; overflow-x: hidden;
+        }
 
-    body {
-      background: var(--clr-bg);
-      color: var(--clr-text);
-      font-family: var(--font-body);
-      font-weight: 300;
-      line-height: 1.7;
-      min-height: 100vh;
-    }
+        a { text-decoration: none; color: var(--primary-color); }
+        ul { list-style: none; }
 
-    /* ── NAV ── */
-    nav {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(13,15,14,0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--clr-border);
-      padding: 0 2rem;
-      display: flex; align-items: center; justify-content: space-between;
-      height: 64px;
-    }
-    .nav-logo {
-      font-family: var(--font-display);
-      font-size: 1.3rem; font-weight: 600;
-      color: var(--clr-white);
-      text-decoration: none;
-      letter-spacing: 0.02em;
-    }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a {
-      color: var(--clr-muted); text-decoration: none;
-      font-size: 0.88rem; letter-spacing: 0.06em; text-transform: uppercase;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover, .nav-links a.active { color: var(--clr-accent); }
+        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-    /* ── HERO ── */
-    .hero {
-      padding: 6rem 2rem 4rem;
-      max-width: 900px; margin: 0 auto;
-      border-bottom: 1px solid var(--clr-border);
-    }
-    .hero-label {
-      font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--clr-accent); margin-bottom: 1.2rem;
-      display: flex; align-items: center; gap: 0.6rem;
-    }
-    .hero-label::before {
-      content: ''; display: block;
-      width: 28px; height: 1px; background: var(--clr-accent);
-    }
-    .hero h1 {
-      font-family: var(--font-display);
-      font-size: clamp(2.8rem, 6vw, 4.5rem);
-      font-weight: 600; line-height: 1.1;
-      color: var(--clr-white);
-      margin-bottom: 1.2rem;
-    }
-    .hero p {
-      font-size: 1.05rem; color: var(--clr-muted);
-      max-width: 560px; line-height: 1.8;
-    }
+        /* NAVBAR */
+        .navbar {
+            position: fixed; width: 100%; z-index: 1000;
+            background-color: rgba(255,255,255,0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        .navbar-container {
+            display: flex; justify-content: space-between;
+            align-items: center; padding: 15px 0;
+        }
+        .logo { font-size: 24px; font-weight: 700; color: var(--primary-color); }
+        .logo span { color: var(--secondary-color); }
+        .nav-menu { display: flex; }
+        .nav-item { margin-left: 30px; }
+        .nav-link { color: var(--dark-color); font-weight: 500; transition: all 0.3s ease; }
+        .nav-link:hover, .nav-link.active { color: var(--primary-color); }
+        .mobile-nav-toggle {
+            display: none; background: transparent; border: none;
+            font-size: 24px; cursor: pointer; color: var(--dark-color);
+        }
 
-    /* ── FILTER ── */
-    .filter-bar {
-      max-width: 1100px; margin: 0 auto;
-      padding: 2.4rem 2rem 0;
-      display: flex; flex-wrap: wrap; gap: 0.6rem;
-      align-items: center;
-    }
-    .filter-label {
-      font-size: 0.78rem; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--clr-muted);
-      margin-right: 0.4rem;
-    }
-    .tag-btn {
-      background: transparent;
-      border: 1px solid var(--clr-border);
-      color: var(--clr-muted);
-      padding: 0.35rem 1rem;
-      border-radius: 100px;
-      font-family: var(--font-body);
-      font-size: 0.82rem;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .tag-btn:hover { border-color: var(--clr-accent); color: var(--clr-accent); }
-    .tag-btn.active {
-      background: var(--clr-accent); border-color: var(--clr-accent);
-      color: var(--clr-bg);
-    }
+        /* PAGE HERO */
+        .page-hero {
+            background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
+                        url('../imgs/background.jpg') center/cover no-repeat;
+            color: white; padding: 160px 0 80px; text-align: center;
+        }
+        .page-hero h1 { font-size: 2.8rem; font-weight: 700; margin-bottom: 15px; }
+        .page-hero p { font-size: 1.1rem; opacity: 0.85; max-width: 600px; margin: 0 auto 10px; }
+        .breadcrumb-nav { margin-top: 20px; font-size: 0.9rem; opacity: 0.75; }
+        .breadcrumb-nav a { color: white; }
+        .breadcrumb-nav a:hover { text-decoration: underline; }
+        .breadcrumb-nav span { margin: 0 8px; }
 
-    /* ── GRID ── */
-    .posts-grid {
-      max-width: 1100px; margin: 0 auto;
-      padding: 2.4rem 2rem 6rem;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 1.6rem;
-    }
+        /* FILTER */
+        .filter-section {
+            background: white; padding: 22px 0;
+            border-bottom: 1px solid #e9ecef;
+            position: sticky; top: 70px; z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .filter-inner { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .filter-label { font-size: 0.88rem; font-weight: 600; color: #666; margin-right: 4px; }
+        .tag-btn {
+            background: white; border: 1.5px solid #dee2e6; color: #555;
+            padding: 6px 18px; border-radius: 50px;
+            font-family: inherit; font-size: 0.88rem;
+            cursor: pointer; transition: all 0.2s ease;
+        }
+        .tag-btn:hover { border-color: var(--primary-color); color: var(--primary-color); }
+        .tag-btn.active { background: var(--primary-color); border-color: var(--primary-color); color: white; }
 
-    /* ── CARD ── */
-    .card {
-      background: var(--clr-card);
-      border: 1px solid var(--clr-border);
-      border-radius: 4px;
-      overflow: hidden;
-      display: flex; flex-direction: column;
-      transition: border-color 0.25s, transform 0.25s;
-      animation: fadeUp 0.5s ease both;
-      cursor: pointer;
-      text-decoration: none;
-      color: inherit;
-    }
-    .card:hover {
-      border-color: var(--clr-accent);
-      transform: translateY(-3px);
-    }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .card-img {
-      width: 100%; aspect-ratio: 16/9;
-      object-fit: cover; display: block;
-      background: var(--clr-surface);
-    }
-    .card-img-placeholder {
-      width: 100%; aspect-ratio: 16/9;
-      background: linear-gradient(135deg, #1a2420 0%, #0f1a12 100%);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 2.5rem; color: var(--clr-border);
-    }
-    .card-body { padding: 1.4rem 1.6rem 1.6rem; flex: 1; display: flex; flex-direction: column; }
-    .card-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.8rem; }
-    .card-tag {
-      font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--clr-accent-dark);
-      background: rgba(106,155,96,0.12);
-      padding: 0.2rem 0.6rem; border-radius: 2px;
-    }
-    .card-title {
-      font-family: var(--font-display);
-      font-size: 1.35rem; font-weight: 600; line-height: 1.3;
-      color: var(--clr-white); margin-bottom: 0.7rem;
-    }
-    .card-excerpt {
-      font-size: 0.88rem; color: var(--clr-muted);
-      line-height: 1.7; flex: 1; margin-bottom: 1.2rem;
-    }
-    .card-meta {
-      display: flex; align-items: center; justify-content: space-between;
-      font-size: 0.78rem; color: var(--clr-muted);
-      border-top: 1px solid var(--clr-border);
-      padding-top: 1rem; margin-top: auto;
-    }
-    .card-read-more {
-      color: var(--clr-accent); font-size: 0.8rem;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      display: flex; align-items: center; gap: 0.3rem;
-    }
-    .arrow { display: inline-block; transition: transform 0.2s; }
-    .card:hover .arrow { transform: translateX(4px); }
+        /* POSTS */
+        .posts-section { background: var(--light-color); padding: 60px 0 80px; }
+        .section-header {
+            display: flex; justify-content: space-between;
+            align-items: baseline; margin-bottom: 35px;
+        }
+        .section-header h2 { font-size: 1.5rem; font-weight: 600; color: var(--dark-color); }
+        .post-count { font-size: 0.9rem; color: #888; }
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 30px;
+        }
 
-    /* ── EMPTY ── */
-    .empty-state {
-      grid-column: 1 / -1;
-      text-align: center; padding: 4rem 2rem;
-      color: var(--clr-muted);
-    }
-    .empty-state .icon { font-size: 3rem; margin-bottom: 1rem; }
+        /* CARD */
+        .card {
+            background: white; border-radius: 10px; overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+            display: flex; flex-direction: column;
+            text-decoration: none; color: inherit;
+        }
+        .card:hover { transform: translateY(-8px); box-shadow: 0 15px 30px rgba(0,0,0,0.12); }
+        .card-img-wrap {
+            height: 200px;
+            background: linear-gradient(135deg, #e8f0fe 0%, #d4edda 100%);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 3.5rem; overflow: hidden;
+        }
+        .card-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+        .card-body { padding: 22px 24px 24px; flex: 1; display: flex; flex-direction: column; }
+        .card-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+        .card-tag {
+            font-size: 0.72rem; font-weight: 600;
+            letter-spacing: 0.05em; text-transform: uppercase;
+            color: var(--primary-color);
+            background: rgba(13,110,253,0.08);
+            padding: 3px 10px; border-radius: 50px;
+        }
+        .card-tag.green { color: var(--secondary-color); background: rgba(25,135,84,0.08); }
+        .card-title {
+            font-size: 1.1rem; font-weight: 600; line-height: 1.4;
+            color: var(--dark-color); margin-bottom: 10px; transition: color 0.2s;
+        }
+        .card:hover .card-title { color: var(--primary-color); }
+        .card-excerpt { font-size: 0.9rem; color: #666; line-height: 1.7; flex: 1; margin-bottom: 18px; }
+        .card-meta {
+            display: flex; align-items: center; justify-content: space-between;
+            font-size: 0.82rem; color: #999;
+            border-top: 1px solid #f0f0f0; padding-top: 14px; margin-top: auto;
+        }
+        .card-read-more {
+            color: var(--primary-color); font-weight: 500;
+            font-size: 0.85rem; display: flex; align-items: center; gap: 5px;
+        }
+        .card-read-more i { transition: transform 0.2s; font-size: 0.75rem; }
+        .card:hover .card-read-more i { transform: translateX(4px); }
 
-    /* ── FOOTER ── */
-    footer {
-      border-top: 1px solid var(--clr-border);
-      padding: 2rem;
-      text-align: center;
-      font-size: 0.82rem; color: var(--clr-muted);
-    }
-    footer a { color: var(--clr-accent); text-decoration: none; }
+        /* EMPTY */
+        .empty-state { grid-column: 1/-1; text-align: center; padding: 60px 20px; color: #aaa; }
+        .empty-state i { font-size: 3rem; margin-bottom: 15px; display: block; }
 
-    @media (max-width: 600px) {
-      nav { padding: 0 1rem; }
-      .nav-links { gap: 1.2rem; }
-      .nav-links li:not(:last-child):not(:nth-last-child(2)) { display: none; }
-      .hero { padding: 4rem 1rem 3rem; }
-      .filter-bar, .posts-grid { padding-left: 1rem; padding-right: 1rem; }
-    }
-  </style>
+        /* CTA */
+        .cta-strip { background: var(--primary-color); color: white; padding: 60px 0; text-align: center; }
+        .cta-strip h2 { font-size: 1.8rem; margin-bottom: 10px; }
+        .cta-strip p { opacity: 0.88; margin-bottom: 25px; }
+        .btn-white {
+            display: inline-block; background: white;
+            color: var(--primary-color); padding: 12px 32px;
+            border-radius: 50px; font-weight: 600; font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+        .btn-white:hover { background: var(--dark-color); color: white; }
+
+        /* FOOTER */
+        .footer { background-color: var(--dark-color); color: white; padding: 50px 0 20px; }
+        .footer-container { display: flex; flex-wrap: wrap; justify-content: space-between; }
+        .footer-column { flex-basis: 30%; margin-bottom: 30px; }
+        .footer-column h3 { margin-bottom: 20px; position: relative; padding-bottom: 10px; }
+        .footer-column h3::after {
+            content: ''; position: absolute; left: 0; bottom: 0;
+            width: 50px; height: 2px; background: var(--primary-color);
+        }
+        .footer-links li { margin-bottom: 10px; }
+        .footer-links a { color: #bbb; transition: all 0.3s ease; }
+        .footer-links a:hover { color: white; padding-left: 5px; }
+        .social-links { display: flex; margin-top: 20px; }
+        .social-links a {
+            width: 40px; height: 40px; background: rgba(255,255,255,0.1);
+            margin-right: 10px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: white; transition: all 0.3s ease;
+        }
+        .social-links a:hover { background: var(--primary-color); transform: translateY(-5px); }
+        .copyright {
+            text-align: center; padding-top: 20px; margin-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 14px; color: #bbb;
+        }
+
+        /* BACK TO TOP */
+        .back-to-top {
+            position: fixed; bottom: 30px; right: 30px;
+            width: 50px; height: 50px;
+            background: var(--primary-color); color: white;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 20px; cursor: pointer; z-index: 99;
+            opacity: 0; visibility: hidden; transition: all 0.3s ease;
+        }
+        .back-to-top.show { opacity: 1; visibility: visible; }
+        .back-to-top:hover { background: var(--dark-color); transform: translateY(-5px); }
+
+        /* RESPONSIVE */
+        @media (max-width: 992px) {
+            .navbar-container { padding: 15px; }
+            .footer-column { flex-basis: 48%; }
+        }
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed; top: -100%; left: 0; width: 100%;
+                background: white; box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                padding: 30px 0; transition: all 0.4s ease;
+                flex-direction: column; align-items: center;
+            }
+            .nav-menu.active { top: 70px; }
+            .nav-item { margin: 10px 0; }
+            .mobile-nav-toggle { display: block; }
+            .page-hero h1 { font-size: 2rem; }
+            .posts-grid { grid-template-columns: 1fr; }
+            .footer-column { flex-basis: 100%; }
+            .filter-section { top: 60px; }
+        }
+    </style>
 </head>
 <body>
 
-  <nav>
-    <a href="/" class="nav-logo">Shanco Việt Nam</a>
-    <ul class="nav-links">
-      <li><a href="/#services">Dịch Vụ</a></li>
-      <li><a href="/#projects">Dự Án</a></li>
-      <li><a href="/kien-thuc/" class="active">Kiến Thức</a></li>
-      <li><a href="/#contact">Liên Hệ</a></li>
-    </ul>
-  </nav>
+<!-- Navbar -->
+<header class="navbar">
+    <div class="container navbar-container">
+        <a href="../" class="logo">Shanco <span>Việt Nam</span></a>
+        <nav>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="../#about" class="nav-link">Về Chúng Tôi</a></li>
+                <li class="nav-item"><a href="../#services" class="nav-link">Dịch Vụ</a></li>
+                <li class="nav-item"><a href="../#expertise" class="nav-link">Chuyên Môn</a></li>
+                <li class="nav-item"><a href="../#projects" class="nav-link">Dự Án</a></li>
+                <li class="nav-item"><a href="../#insights" class="nav-link">Kiến Thức</a></li>
+                <li class="nav-item"><a href="./" class="nav-link active">Bài Viết</a></li>
+                <li class="nav-item"><a href="../#contact" class="nav-link">Liên Hệ</a></li>
+            </ul>
+            <button class="mobile-nav-toggle"><i class="fas fa-bars"></i></button>
+        </nav>
+    </div>
+</header>
 
-  <section class="hero">
-    <div class="hero-label">Chia sẻ kiến thức</div>
-    <h1>Thiết kế &amp;<br/>Xây dựng</h1>
-    <p>Góc nhìn chuyên môn từ đội ngũ Shanco — BIM, kiến trúc xanh, xu hướng hiện đại và những điều cần biết trước khi xây nhà.</p>
-  </section>
+<!-- Hero -->
+<section class="page-hero">
+    <div class="container" data-aos="fade-up">
+        <h1><i class="fas fa-pen-nib" style="margin-right:12px;"></i>Bài Viết</h1>
+        <p>Góc nhìn chuyên môn về BIM, kiến trúc xanh, xu hướng thiết kế và những điều cần biết trước khi xây nhà.</p>
+        <div class="breadcrumb-nav">
+            <a href="../">Trang chủ</a><span>/</span>Bài viết
+        </div>
+    </div>
+</section>
 
-  <div class="filter-bar">
-    <span class="filter-label">Chủ đề:</span>
-    <button class="tag-btn active" data-tag="all">Tất cả</button>
-    <button class="tag-btn" data-tag="BIM">BIM</button>
-    <button class="tag-btn" data-tag="Kiến trúc xanh">Kiến trúc xanh</button>
-    <button class="tag-btn" data-tag="Thiết kế">Thiết kế</button>
-    <button class="tag-btn" data-tag="Xây dựng">Xây dựng</button>
-    <button class="tag-btn" data-tag="Xu hướng">Xu hướng</button>
-  </div>
+<!-- Filter -->
+<div class="filter-section">
+    <div class="container">
+        <div class="filter-inner">
+            <span class="filter-label"><i class="fas fa-filter" style="margin-right:5px;"></i>Chủ đề:</span>
+            <button class="tag-btn active" data-tag="all">Tất cả</button>
+            <button class="tag-btn" data-tag="BIM">BIM</button>
+            <button class="tag-btn" data-tag="Kiến trúc xanh">Kiến trúc xanh</button>
+            <button class="tag-btn" data-tag="Thiết kế">Thiết kế</button>
+            <button class="tag-btn" data-tag="Xây dựng">Xây dựng</button>
+            <button class="tag-btn" data-tag="Xu hướng">Xu hướng</button>
+        </div>
+    </div>
+</div>
 
-  <div class="posts-grid" id="postsGrid"></div>
+<!-- Posts -->
+<section class="posts-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Tất cả bài viết</h2>
+            <span class="post-count" id="postCount"></span>
+        </div>
+        <div class="posts-grid" id="postsGrid"></div>
+    </div>
+</section>
 
-  <footer>
-    <p>© 2025 Shanco Việt Nam &nbsp;·&nbsp; <a href="mailto:shanco.vn@gmail.com">shanco.vn@gmail.com</a> &nbsp;·&nbsp; <a href="/">Trang chủ</a></p>
-  </footer>
+<!-- CTA -->
+<section class="cta-strip">
+    <div class="container" data-aos="fade-up">
+        <h2>Bạn có dự án cần tư vấn?</h2>
+        <p>Đội ngũ Shanco sẵn sàng đồng hành cùng bạn từ ý tưởng đến hoàn công.</p>
+        <a href="../#contact" class="btn-white">Liên hệ ngay</a>
+    </div>
+</section>
 
-  <script>
-    // ── Load posts từ posts.json ──
-    async function loadPosts() {
-      const res = await fetch('/kien-thuc/posts.json');
-      const posts = await res.json();
-      return posts;
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Shanco Việt Nam</h3>
+                <p>Tự hào là đơn vị tiên phong trong ứng dụng BIM và kiến trúc xanh, mang đến những công trình bền vững và hiện đại.</p>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/phamthanhtungkts" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/@KTSPTT" target="_blank"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Dịch vụ của chúng tôi</h3>
+                <ul class="footer-links">
+                    <li><a href="../#services">Thiết kế kiến trúc tổng thể</a></li>
+                    <li><a href="../#services">Ứng dụng BIM chuyên sâu</a></li>
+                    <li><a href="../#services">Tư vấn xây dựng và đầu tư</a></li>
+                    <li><a href="../#services">Thiết kế công trình xanh</a></li>
+                    <li><a href="../#services">Quản lý dự án</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Liên kết nhanh</h3>
+                <ul class="footer-links">
+                    <li><a href="../">Trang chủ</a></li>
+                    <li><a href="../#about">Về chúng tôi</a></li>
+                    <li><a href="../#projects">Dự án</a></li>
+                    <li><a href="../#insights">Kiến thức</a></li>
+                    <li><a href="./">Bài viết</a></li>
+                    <li><a href="../#contact">Liên hệ</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright"><p>&copy; 2025 Shanco Việt Nam</p></div>
+    </div>
+</footer>
+
+<a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+AOS.init({ duration: 800, easing: 'ease-in-out', once: true });
+
+// Mobile nav
+const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+const navMenu = document.querySelector('.nav-menu');
+mobileNavToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+    const icon = mobileNavToggle.querySelector('i');
+    icon.classList.toggle('fa-bars');
+    icon.classList.toggle('fa-times');
+});
+document.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', () => {
+    navMenu.classList.remove('active');
+    mobileNavToggle.querySelector('i').className = 'fas fa-bars';
+}));
+
+// Back to top + sticky nav
+window.addEventListener('scroll', () => {
+    document.querySelector('.back-to-top').classList.toggle('show', window.pageYOffset > 300);
+    document.querySelector('.navbar').style.padding = window.pageYOffset > 50 ? '10px 0' : '15px 0';
+});
+
+// Tag color map
+const greenTags = ['Kiến trúc xanh', 'Thiết kế'];
+
+function renderCards(posts) {
+    const grid = document.getElementById('postsGrid');
+    const count = document.getElementById('postCount');
+    grid.innerHTML = '';
+    count.textContent = posts.length + ' bài viết';
+
+    if (!posts.length) {
+        grid.innerHTML = `<div class="empty-state"><i class="fas fa-search"></i><p>Chưa có bài viết trong chủ đề này.</p></div>`;
+        return;
     }
 
-    function renderCards(posts) {
-      const grid = document.getElementById('postsGrid');
-      grid.innerHTML = '';
+    posts.forEach((post, i) => {
+        const tagsHtml = post.tags.map(t =>
+            `<span class="card-tag ${greenTags.includes(t) ? 'green' : ''}">${t}</span>`
+        ).join('');
 
-      if (posts.length === 0) {
-        grid.innerHTML = `<div class="empty-state"><div class="icon">📐</div><p>Chưa có bài viết trong chủ đề này.</p></div>`;
-        return;
-      }
+        const imgHtml = post.thumbnail
+            ? `<img src="${post.thumbnail}" alt="${post.title}">`
+            : `<span>${post.icon || '🏛️'}</span>`;
 
-      posts.forEach((post, i) => {
         const card = document.createElement('a');
         card.className = 'card';
         card.href = post.url;
-        card.style.animationDelay = `${i * 0.07}s`;
-
-        const imgHtml = post.thumbnail
-          ? `<img class="card-img" src="${post.thumbnail}" alt="${post.title}" loading="lazy" />`
-          : `<div class="card-img-placeholder">${post.icon || '🏛️'}</div>`;
-
-        const tagsHtml = post.tags.map(t => `<span class="card-tag">${t}</span>`).join('');
-
+        card.setAttribute('data-aos', 'fade-up');
+        card.setAttribute('data-aos-delay', String(i * 80));
         card.innerHTML = `
-          ${imgHtml}
-          <div class="card-body">
-            <div class="card-tags">${tagsHtml}</div>
-            <div class="card-title">${post.title}</div>
-            <div class="card-excerpt">${post.excerpt}</div>
-            <div class="card-meta">
-              <span>${post.date} &nbsp;·&nbsp; ${post.readTime} phút đọc</span>
-              <span class="card-read-more">Đọc tiếp <span class="arrow">→</span></span>
-            </div>
-          </div>
-        `;
+            <div class="card-img-wrap">${imgHtml}</div>
+            <div class="card-body">
+                <div class="card-tags">${tagsHtml}</div>
+                <div class="card-title">${post.title}</div>
+                <div class="card-excerpt">${post.excerpt}</div>
+                <div class="card-meta">
+                    <span><i class="far fa-calendar-alt" style="margin-right:5px;"></i>${post.date}&nbsp;·&nbsp;<i class="far fa-clock" style="margin-right:4px;margin-left:4px;"></i>${post.readTime} phút</span>
+                    <span class="card-read-more">Đọc tiếp <i class="fas fa-arrow-right"></i></span>
+                </div>
+            </div>`;
         grid.appendChild(card);
-      });
-    }
+    });
+    AOS.refresh();
+}
 
-    // ── Filter ──
-    let allPosts = [];
-
-    document.querySelectorAll('.tag-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
+let allPosts = [];
+document.querySelectorAll('.tag-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
         document.querySelectorAll('.tag-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         const tag = btn.dataset.tag;
-        const filtered = tag === 'all'
-          ? allPosts
-          : allPosts.filter(p => p.tags.includes(tag));
-        renderCards(filtered);
-      });
+        renderCards(tag === 'all' ? allPosts : allPosts.filter(p => p.tags.includes(tag)));
     });
+});
 
-    // ── Init ──
-    loadPosts().then(posts => {
-      allPosts = posts;
-      renderCards(posts);
-    }).catch(() => {
-      document.getElementById('postsGrid').innerHTML =
-        `<div class="empty-state"><div class="icon">⚠️</div><p>Không tải được danh sách bài viết.</p></div>`;
+fetch('./posts.json')
+    .then(r => r.json())
+    .then(posts => { allPosts = posts; renderCards(posts); })
+    .catch(() => {
+        document.getElementById('postsGrid').innerHTML =
+            `<div class="empty-state"><i class="fas fa-exclamation-triangle"></i><p>Không tải được danh sách bài viết.</p></div>`;
     });
-  </script>
+</script>
 </body>
 </html>

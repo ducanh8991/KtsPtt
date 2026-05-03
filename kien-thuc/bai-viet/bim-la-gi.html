@@ -1,355 +1,424 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BIM là gì? – Shanco Việt Nam</title>
-  <meta name="description" content="Building Information Modeling không chỉ là phần mềm vẽ 3D — đây là phương pháp quản lý toàn bộ vòng đời công trình." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --clr-bg: #0d0f0e;
-      --clr-surface: #141716;
-      --clr-card: #1a1d1b;
-      --clr-border: #2a2f2c;
-      --clr-text: #e8ede9;
-      --clr-muted: #7a8c7d;
-      --clr-accent: #a8c5a0;
-      --clr-accent-dark: #6a9b60;
-      --clr-white: #f0f5f1;
-      --font-display: 'Cormorant Garamond', Georgia, serif;
-      --font-body: 'DM Sans', sans-serif;
-      --content-width: 680px;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIM là gì? – Shanco Việt Nam</title>
+    <meta name="description" content="Building Information Modeling không chỉ là phần mềm vẽ 3D — đây là phương pháp quản lý toàn bộ vòng đời công trình.">
+    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgAQMAAABJtOi3AAAABlBMVEX///8PPHhzsxSyAAAAAXRSTlMAQObYZgAAAEJJREFUeAF1xMUBgDAUA1Cc4x+BTdrJ8D3opEiC1yIvQSqi8KwDGqREyA5qIiEMWcigt0RmsgfpLpIGpAbIxx5FdQdTDTC5XkVhNQAAAABJRU5ErkJggg=="/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <style>
+        :root {
+            --primary-color: #0D6EFD;
+            --secondary-color: #198754;
+            --dark-color: #212529;
+            --light-color: #f8f9fa;
+            --accent-color: #FFC107;
+        }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    body {
-      background: var(--clr-bg);
-      color: var(--clr-text);
-      font-family: var(--font-body);
-      font-weight: 300;
-      line-height: 1.8;
-    }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6; color: #333; overflow-x: hidden;
+        }
 
-    /* NAV */
-    nav {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(13,15,14,0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--clr-border);
-      padding: 0 2rem;
-      display: flex; align-items: center; justify-content: space-between;
-      height: 64px;
-    }
-    .nav-logo {
-      font-family: var(--font-display); font-size: 1.3rem; font-weight: 600;
-      color: var(--clr-white); text-decoration: none; letter-spacing: 0.02em;
-    }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a {
-      color: var(--clr-muted); text-decoration: none;
-      font-size: 0.88rem; letter-spacing: 0.06em; text-transform: uppercase;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--clr-accent); }
+        a { text-decoration: none; color: var(--primary-color); }
+        ul { list-style: none; }
+        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-    /* ARTICLE HEADER */
-    .article-header {
-      max-width: var(--content-width);
-      margin: 0 auto;
-      padding: 5rem 2rem 3rem;
-    }
-    .breadcrumb {
-      font-size: 0.8rem; color: var(--clr-muted);
-      margin-bottom: 2rem;
-      display: flex; align-items: center; gap: 0.5rem;
-    }
-    .breadcrumb a { color: var(--clr-muted); text-decoration: none; }
-    .breadcrumb a:hover { color: var(--clr-accent); }
-    .breadcrumb span { color: var(--clr-border); }
+        /* NAVBAR */
+        .navbar {
+            position: fixed; width: 100%; z-index: 1000;
+            background-color: rgba(255,255,255,0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        .navbar-container {
+            display: flex; justify-content: space-between;
+            align-items: center; padding: 15px 0;
+        }
+        .logo { font-size: 24px; font-weight: 700; color: var(--primary-color); }
+        .logo span { color: var(--secondary-color); }
+        .nav-menu { display: flex; }
+        .nav-item { margin-left: 30px; }
+        .nav-link { color: var(--dark-color); font-weight: 500; transition: all 0.3s ease; }
+        .nav-link:hover, .nav-link.active { color: var(--primary-color); }
+        .mobile-nav-toggle {
+            display: none; background: transparent; border: none;
+            font-size: 24px; cursor: pointer; color: var(--dark-color);
+        }
 
-    .post-tags { display: flex; gap: 0.5rem; margin-bottom: 1.2rem; }
-    .post-tag {
-      font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--clr-accent-dark);
-      background: rgba(106,155,96,0.12);
-      padding: 0.25rem 0.7rem; border-radius: 2px;
-    }
+        /* ARTICLE HERO */
+        .article-hero {
+            background: linear-gradient(rgba(0,0,0,0.68), rgba(0,0,0,0.68)),
+                        url('../../imgs/background.jpg') center/cover no-repeat;
+            color: white; padding: 150px 0 70px;
+        }
+        .article-hero-inner { max-width: 800px; }
+        .breadcrumb-nav { font-size: 0.88rem; opacity: 0.75; margin-bottom: 20px; }
+        .breadcrumb-nav a { color: white; }
+        .breadcrumb-nav a:hover { text-decoration: underline; }
+        .breadcrumb-nav span { margin: 0 8px; }
+        .post-tags-hero { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+        .post-tag-hero {
+            font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.06em; padding: 4px 14px; border-radius: 50px;
+            background: var(--primary-color); color: white;
+        }
+        .post-tag-hero.green { background: var(--secondary-color); }
+        .article-hero h1 {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 700; line-height: 1.25; margin-bottom: 20px;
+        }
+        .article-meta-hero {
+            display: flex; align-items: center; gap: 20px;
+            font-size: 0.9rem; opacity: 0.8; flex-wrap: wrap;
+        }
+        .article-meta-hero i { margin-right: 5px; }
 
-    .article-title {
-      font-family: var(--font-display);
-      font-size: clamp(2.2rem, 5vw, 3.4rem);
-      font-weight: 600; line-height: 1.15;
-      color: var(--clr-white); margin-bottom: 1.2rem;
-    }
+        /* ARTICLE BODY */
+        .article-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 20px 80px;
+            align-items: start;
+        }
 
-    .article-meta {
-      font-size: 0.85rem; color: var(--clr-muted);
-      display: flex; align-items: center; gap: 1.2rem;
-      border-top: 1px solid var(--clr-border);
-      border-bottom: 1px solid var(--clr-border);
-      padding: 1rem 0;
-      margin-top: 1.5rem;
-    }
-    .author { display: flex; align-items: center; gap: 0.6rem; }
-    .author-dot {
-      width: 28px; height: 28px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--clr-accent-dark), var(--clr-accent));
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.7rem; font-weight: 500; color: var(--clr-bg);
-    }
+        /* CONTENT */
+        .article-content h2 {
+            font-size: 1.6rem; font-weight: 700;
+            color: var(--dark-color); margin: 2.5rem 0 1rem;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+        }
+        .article-content h3 {
+            font-size: 1.2rem; font-weight: 600;
+            color: var(--primary-color); margin: 1.8rem 0 0.8rem;
+        }
+        .article-content p { font-size: 1rem; margin-bottom: 1.2rem; line-height: 1.8; color: #444; }
+        .article-content ul, .article-content ol {
+            margin: 0 0 1.2rem 1.5rem; color: #444;
+        }
+        .article-content li { margin-bottom: 6px; line-height: 1.7; }
+        .article-content ul li::marker { color: var(--primary-color); }
 
-    /* CONTENT */
-    .article-content {
-      max-width: var(--content-width);
-      margin: 0 auto;
-      padding: 3rem 2rem 5rem;
-    }
+        .callout {
+            border-left: 4px solid var(--primary-color);
+            background: rgba(13,110,253,0.06);
+            padding: 18px 22px;
+            border-radius: 0 8px 8px 0;
+            margin: 1.8rem 0;
+            font-size: 1.05rem;
+            color: #333;
+            font-style: italic;
+        }
 
-    .article-content p {
-      margin-bottom: 1.5rem;
-      font-size: 1.02rem;
-      color: #ccd5cd;
-    }
+        .info-box {
+            background: var(--light-color);
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 20px 24px;
+            margin: 1.8rem 0;
+        }
+        .info-box-title {
+            font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em;
+            text-transform: uppercase; color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+        .info-box p { margin-bottom: 0; font-size: 0.95rem; }
 
-    .article-content h2 {
-      font-family: var(--font-display);
-      font-size: 1.9rem; font-weight: 600;
-      color: var(--clr-white);
-      margin: 2.8rem 0 1rem;
-      line-height: 1.2;
-    }
+        .divider { border: none; border-top: 1px solid #dee2e6; margin: 2.5rem 0; }
 
-    .article-content h3 {
-      font-family: var(--font-display);
-      font-size: 1.4rem; font-weight: 600;
-      color: var(--clr-accent);
-      margin: 2rem 0 0.8rem;
-    }
+        /* SIDEBAR */
+        .sidebar { position: sticky; top: 100px; }
+        .sidebar-card {
+            background: white; border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.07);
+            padding: 24px; margin-bottom: 24px;
+        }
+        .sidebar-card h4 {
+            font-size: 1rem; font-weight: 700;
+            color: var(--dark-color); margin-bottom: 16px;
+            padding-bottom: 10px; border-bottom: 2px solid var(--primary-color);
+        }
+        .toc-list { list-style: none; }
+        .toc-list li { margin-bottom: 8px; }
+        .toc-list a {
+            font-size: 0.88rem; color: #555;
+            display: flex; align-items: center; gap: 6px;
+            transition: color 0.2s;
+        }
+        .toc-list a:hover { color: var(--primary-color); }
+        .toc-list a i { font-size: 0.7rem; color: var(--primary-color); }
+        .sidebar-cta {
+            background: var(--primary-color); color: white;
+            border-radius: 10px; padding: 24px; text-align: center;
+        }
+        .sidebar-cta h4 { font-size: 1rem; margin-bottom: 10px; }
+        .sidebar-cta p { font-size: 0.88rem; opacity: 0.88; margin-bottom: 16px; }
+        .btn-cta {
+            display: inline-block; background: white;
+            color: var(--primary-color); padding: 10px 22px;
+            border-radius: 50px; font-weight: 600; font-size: 0.88rem;
+            transition: all 0.3s ease;
+        }
+        .btn-cta:hover { background: var(--dark-color); color: white; }
 
-    .article-content ul, .article-content ol {
-      margin: 0 0 1.5rem 1.4rem;
-      color: #ccd5cd;
-    }
-    .article-content li { margin-bottom: 0.5rem; font-size: 1.02rem; }
+        /* BACK LINK */
+        .back-bar {
+            background: var(--light-color);
+            border-top: 1px solid #dee2e6;
+            padding: 16px 0;
+        }
+        .back-bar a {
+            font-size: 0.9rem; color: #555; font-weight: 500;
+            display: inline-flex; align-items: center; gap: 6px;
+            transition: color 0.2s;
+        }
+        .back-bar a:hover { color: var(--primary-color); }
 
-    .callout {
-      background: rgba(106,155,96,0.08);
-      border-left: 3px solid var(--clr-accent-dark);
-      padding: 1.2rem 1.5rem;
-      border-radius: 0 4px 4px 0;
-      margin: 2rem 0;
-      font-style: italic;
-      color: var(--clr-accent);
-      font-family: var(--font-display);
-      font-size: 1.15rem;
-      line-height: 1.6;
-    }
+        /* FOOTER */
+        .footer { background-color: var(--dark-color); color: white; padding: 50px 0 20px; }
+        .footer-container { display: flex; flex-wrap: wrap; justify-content: space-between; }
+        .footer-column { flex-basis: 30%; margin-bottom: 30px; }
+        .footer-column h3 { margin-bottom: 20px; position: relative; padding-bottom: 10px; }
+        .footer-column h3::after {
+            content: ''; position: absolute; left: 0; bottom: 0;
+            width: 50px; height: 2px; background: var(--primary-color);
+        }
+        .footer-links li { margin-bottom: 10px; }
+        .footer-links a { color: #bbb; transition: all 0.3s ease; }
+        .footer-links a:hover { color: white; padding-left: 5px; }
+        .social-links { display: flex; margin-top: 20px; }
+        .social-links a {
+            width: 40px; height: 40px; background: rgba(255,255,255,0.1);
+            margin-right: 10px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: white; transition: all 0.3s ease;
+        }
+        .social-links a:hover { background: var(--primary-color); transform: translateY(-5px); }
+        .copyright {
+            text-align: center; padding-top: 20px; margin-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 14px; color: #bbb;
+        }
 
-    .info-box {
-      background: var(--clr-card);
-      border: 1px solid var(--clr-border);
-      border-radius: 4px;
-      padding: 1.5rem;
-      margin: 2rem 0;
-    }
-    .info-box-title {
-      font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--clr-accent); margin-bottom: 0.8rem; font-weight: 500;
-    }
-    .info-box p { margin-bottom: 0; font-size: 0.95rem; }
+        .back-to-top {
+            position: fixed; bottom: 30px; right: 30px;
+            width: 50px; height: 50px;
+            background: var(--primary-color); color: white;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 20px; cursor: pointer; z-index: 99;
+            opacity: 0; visibility: hidden; transition: all 0.3s ease;
+        }
+        .back-to-top.show { opacity: 1; visibility: visible; }
+        .back-to-top:hover { background: var(--dark-color); transform: translateY(-5px); }
 
-    .divider {
-      border: none; border-top: 1px solid var(--clr-border);
-      margin: 3rem 0;
-    }
-
-    /* CTA */
-    .article-cta {
-      max-width: var(--content-width);
-      margin: 0 auto 5rem;
-      padding: 0 2rem;
-    }
-    .cta-box {
-      background: linear-gradient(135deg, #141f16 0%, #0d1510 100%);
-      border: 1px solid var(--clr-accent-dark);
-      border-radius: 4px;
-      padding: 2.5rem;
-      text-align: center;
-    }
-    .cta-box h3 {
-      font-family: var(--font-display);
-      font-size: 1.7rem; color: var(--clr-white);
-      margin-bottom: 0.8rem;
-    }
-    .cta-box p { color: var(--clr-muted); margin-bottom: 1.5rem; font-size: 0.95rem; }
-    .cta-btn {
-      display: inline-block;
-      background: var(--clr-accent);
-      color: var(--clr-bg);
-      padding: 0.75rem 2rem;
-      border-radius: 2px;
-      text-decoration: none;
-      font-size: 0.88rem;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      transition: opacity 0.2s;
-    }
-    .cta-btn:hover { opacity: 0.85; }
-
-    /* BACK */
-    .back-link {
-      max-width: var(--content-width); margin: 0 auto;
-      padding: 0 2rem 3rem;
-    }
-    .back-link a {
-      color: var(--clr-muted); text-decoration: none;
-      font-size: 0.88rem; display: inline-flex; align-items: center; gap: 0.4rem;
-      transition: color 0.2s;
-    }
-    .back-link a:hover { color: var(--clr-accent); }
-
-    /* FOOTER */
-    footer {
-      border-top: 1px solid var(--clr-border);
-      padding: 2rem; text-align: center;
-      font-size: 0.82rem; color: var(--clr-muted);
-    }
-    footer a { color: var(--clr-accent); text-decoration: none; }
-
-    @media (max-width: 600px) {
-      nav { padding: 0 1rem; }
-      .article-header, .article-content, .article-cta, .back-link { padding-left: 1.2rem; padding-right: 1.2rem; }
-    }
-  </style>
+        /* RESPONSIVE */
+        @media (max-width: 992px) {
+            .article-wrapper { grid-template-columns: 1fr; }
+            .sidebar { position: static; }
+            .navbar-container { padding: 15px; }
+            .footer-column { flex-basis: 48%; }
+        }
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed; top: -100%; left: 0; width: 100%;
+                background: white; box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                padding: 30px 0; transition: all 0.4s ease;
+                flex-direction: column; align-items: center;
+            }
+            .nav-menu.active { top: 70px; }
+            .nav-item { margin: 10px 0; }
+            .mobile-nav-toggle { display: block; }
+            .footer-column { flex-basis: 100%; }
+        }
+    </style>
 </head>
 <body>
 
-  <nav>
-    <a href="/" class="nav-logo">Shanco Việt Nam</a>
-    <ul class="nav-links">
-      <li><a href="/#services">Dịch Vụ</a></li>
-      <li><a href="/#projects">Dự Án</a></li>
-      <li><a href="/kien-thuc/">Kiến Thức</a></li>
-      <li><a href="/#contact">Liên Hệ</a></li>
-    </ul>
-  </nav>
-
-  <header class="article-header">
-    <div class="breadcrumb">
-      <a href="/">Trang chủ</a>
-      <span>/</span>
-      <a href="/kien-thuc/">Kiến thức</a>
-      <span>/</span>
-      BIM là gì?
+<!-- Navbar -->
+<header class="navbar">
+    <div class="container navbar-container">
+        <a href="../../" class="logo">Shanco <span>Việt Nam</span></a>
+        <nav>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="../../#about" class="nav-link">Về Chúng Tôi</a></li>
+                <li class="nav-item"><a href="../../#services" class="nav-link">Dịch Vụ</a></li>
+                <li class="nav-item"><a href="../../#expertise" class="nav-link">Chuyên Môn</a></li>
+                <li class="nav-item"><a href="../../#projects" class="nav-link">Dự Án</a></li>
+                <li class="nav-item"><a href="../../#insights" class="nav-link">Kiến Thức</a></li>
+                <li class="nav-item"><a href="../" class="nav-link active">Bài Viết</a></li>
+                <li class="nav-item"><a href="../../#contact" class="nav-link">Liên Hệ</a></li>
+            </ul>
+            <button class="mobile-nav-toggle"><i class="fas fa-bars"></i></button>
+        </nav>
     </div>
+</header>
 
-    <div class="post-tags">
-      <span class="post-tag">BIM</span>
-      <span class="post-tag">Xu hướng</span>
+<!-- Article Hero -->
+<section class="article-hero">
+    <div class="container">
+        <div class="article-hero-inner" data-aos="fade-up">
+            <div class="breadcrumb-nav">
+                <a href="../../">Trang chủ</a><span>/</span>
+                <a href="../">Bài viết</a><span>/</span>
+                BIM là gì?
+            </div>
+            <div class="post-tags-hero">
+                <span class="post-tag-hero">BIM</span>
+                <span class="post-tag-hero">Xu hướng</span>
+            </div>
+            <h1>BIM là gì? Tại sao ngành xây dựng Việt Nam cần BIM ngay bây giờ</h1>
+            <div class="article-meta-hero">
+                <span><i class="fas fa-user-tie"></i>KTS Phạm Thanh Tùng</span>
+                <span><i class="far fa-calendar-alt"></i>28/04/2025</span>
+                <span><i class="far fa-clock"></i>7 phút đọc</span>
+            </div>
+        </div>
     </div>
+</section>
 
-    <h1 class="article-title">BIM là gì? Tại sao ngành xây dựng Việt Nam cần BIM ngay bây giờ</h1>
+<!-- Article Body -->
+<div class="article-wrapper">
+    <article class="article-content" data-aos="fade-up">
 
-    <div class="article-meta">
-      <div class="author">
-        <div class="author-dot">PTT</div>
-        <span>KTS Phạm Thanh Tùng</span>
-      </div>
-      <span>28/04/2025</span>
-      <span>7 phút đọc</span>
+        <p>Nếu bạn đã nghe đến BIM nhưng vẫn nghĩ đây chỉ là "phần mềm vẽ 3D đắt tiền dành cho công ty lớn" — bài viết này sẽ thay đổi cách nhìn của bạn. BIM không phải là một phần mềm. Đây là một <strong>phương pháp làm việc</strong>, và nó đang thay đổi cách cả thế giới thiết kế và xây dựng công trình.</p>
+
+        <div class="callout">
+            "BIM là quá trình tạo và quản lý thông tin của một công trình xây dựng trong suốt vòng đời của nó — từ thiết kế ban đầu đến vận hành và phá dỡ."
+        </div>
+
+        <h2 id="bim-la-gi">BIM thực sự là gì?</h2>
+        <p>BIM — viết tắt của <strong>Building Information Modeling</strong> — là một quy trình làm việc sử dụng mô hình số thông minh để lưu trữ và quản lý toàn bộ thông tin của một công trình. Mô hình BIM không chỉ là hình ảnh 3D — nó chứa đựng dữ liệu về vật liệu, chi phí, tiến độ, hiệu suất năng lượng, và nhiều hơn nữa.</p>
+        <p>Hãy tưởng tượng bạn xây một ngôi nhà. Thay vì có hàng chục bản vẽ 2D rời rạc — mặt bằng, mặt cắt, chi tiết kết cấu, MEP — tất cả được hợp nhất trong một mô hình duy nhất. Khi bạn thay đổi một bức tường, tất cả bản vẽ liên quan tự động cập nhật. Khi kiến trúc sư, kỹ sư kết cấu và kỹ sư MEP cùng làm việc, họ có thể phát hiện va chạm (clash) ngay trong máy tính, trước khi thi công.</p>
+
+        <div class="info-box">
+            <div class="info-box-title"><i class="fas fa-chart-bar" style="margin-right:6px;"></i>Con số đáng chú ý</div>
+            <p>Theo các nghiên cứu quốc tế, áp dụng BIM có thể giảm 20–30% chi phí phát sinh trong quá trình thi công, đồng thời rút ngắn tiến độ dự án đáng kể nhờ phát hiện xung đột sớm.</p>
+        </div>
+
+        <h2 id="ba-chieu">Ba chiều của BIM</h2>
+        <p>Nhiều người nhầm tưởng BIM chỉ là 3D. Thực ra, BIM có nhiều "chiều" hơn thế:</p>
+        <ul>
+            <li><strong>3D:</strong> Mô hình không gian ba chiều — hình dạng, vị trí, quan hệ giữa các cấu kiện</li>
+            <li><strong>4D:</strong> Thêm chiều thời gian — liên kết mô hình với tiến độ thi công</li>
+            <li><strong>5D:</strong> Thêm chi phí — ước lượng và quản lý ngân sách trực tiếp từ mô hình</li>
+            <li><strong>6D:</strong> Thông tin vận hành — dữ liệu bảo trì, hiệu suất năng lượng sau khi bàn giao</li>
+        </ul>
+
+        <h2 id="tai-sao-viet-nam">Tại sao Việt Nam cần BIM ngay bây giờ?</h2>
+        <p>Việt Nam đang trong giai đoạn đô thị hóa nhanh chóng. Hàng nghìn công trình nhà ở, thương mại và hạ tầng đang được xây dựng mỗi năm. Tuy nhiên, ngành xây dựng vẫn còn phụ thuộc nhiều vào bản vẽ 2D truyền thống và quy trình quản lý thủ công — dẫn đến chậm tiến độ, phát sinh chi phí và tranh chấp giữa các bên.</p>
+        <p>Quan trọng hơn, Chính phủ Việt Nam đã có <strong>Đề án BIM quốc gia</strong>, yêu cầu áp dụng BIM bắt buộc cho các dự án đầu tư công từ năm 2025. Điều này có nghĩa là các đơn vị chưa chuẩn bị năng lực BIM sẽ dần bị loại khỏi cuộc chơi đấu thầu.</p>
+
+        <h3>Lợi ích cụ thể cho chủ đầu tư</h3>
+        <ul>
+            <li>Nhìn thấy ngôi nhà hoàn chỉnh trước khi xây — kể cả nội thất, ánh sáng, tầm nhìn</li>
+            <li>Phát hiện mâu thuẫn thiết kế sớm, tránh phá dỡ sửa chữa tốn kém</li>
+            <li>Quản lý tiến độ và chi phí minh bạch, theo thời gian thực</li>
+            <li>Nhận bộ hồ sơ "as-built" đầy đủ để bảo trì về sau</li>
+        </ul>
+
+        <hr class="divider">
+
+        <h2 id="shanco-bim">Shanco và BIM</h2>
+        <p>Tại Shanco Việt Nam, BIM không phải là dịch vụ bổ sung — đây là nền tảng của mọi dự án chúng tôi thực hiện. Từ biệt thự nhỏ đến khách sạn nhiều tầng, tất cả đều được mô hình hóa đầy đủ bằng Revit và ArchiCAD trước khi thi công.</p>
+        <p>Điều này không chỉ giúp khách hàng thấy rõ sản phẩm trước khi đặt bút ký hợp đồng, mà còn đảm bảo mọi bên liên quan — từ kiến trúc sư, kỹ sư đến nhà thầu — đều làm việc dựa trên một nguồn thông tin duy nhất, nhất quán và cập nhật liên tục.</p>
+
+    </article>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" data-aos="fade-up" data-aos-delay="100">
+        <div class="sidebar-card">
+            <h4><i class="fas fa-list" style="margin-right:7px;color:var(--primary-color);"></i>Mục lục</h4>
+            <ul class="toc-list">
+                <li><a href="#bim-la-gi"><i class="fas fa-chevron-right"></i>BIM thực sự là gì?</a></li>
+                <li><a href="#ba-chieu"><i class="fas fa-chevron-right"></i>Ba chiều của BIM</a></li>
+                <li><a href="#tai-sao-viet-nam"><i class="fas fa-chevron-right"></i>Tại sao Việt Nam cần BIM?</a></li>
+                <li><a href="#shanco-bim"><i class="fas fa-chevron-right"></i>Shanco và BIM</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-cta">
+            <h4>Cần tư vấn BIM?</h4>
+            <p>Shanco sẵn sàng đồng hành từ ý tưởng đến hoàn công.</p>
+            <a href="../../#contact" class="btn-cta">Liên hệ ngay</a>
+        </div>
+    </aside>
+</div>
+
+<!-- Back bar -->
+<div class="back-bar">
+    <div class="container">
+        <a href="../"><i class="fas fa-arrow-left"></i> Quay lại danh sách bài viết</a>
     </div>
-  </header>
+</div>
 
-  <article class="article-content">
-
-    <p>
-      Nếu bạn đã nghe đến BIM nhưng vẫn nghĩ đây chỉ là "phần mềm vẽ 3D đắt tiền dành cho công ty lớn" — bài viết này sẽ thay đổi cách nhìn của bạn. BIM không phải là một phần mềm. Đây là một <em>phương pháp làm việc</em>, và nó đang thay đổi cách cả thế giới thiết kế và xây dựng công trình.
-    </p>
-
-    <div class="callout">
-      "BIM là quá trình tạo và quản lý thông tin của một công trình xây dựng trong suốt vòng đời của nó — từ thiết kế ban đầu đến vận hành và phá dỡ."
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Shanco Việt Nam</h3>
+                <p>Tự hào là đơn vị tiên phong trong ứng dụng BIM và kiến trúc xanh, mang đến những công trình bền vững và hiện đại.</p>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/phamthanhtungkts" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/@KTSPTT" target="_blank"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Dịch vụ của chúng tôi</h3>
+                <ul class="footer-links">
+                    <li><a href="../../#services">Thiết kế kiến trúc tổng thể</a></li>
+                    <li><a href="../../#services">Ứng dụng BIM chuyên sâu</a></li>
+                    <li><a href="../../#services">Tư vấn xây dựng và đầu tư</a></li>
+                    <li><a href="../../#services">Thiết kế công trình xanh</a></li>
+                    <li><a href="../../#services">Quản lý dự án</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Liên kết nhanh</h3>
+                <ul class="footer-links">
+                    <li><a href="../../">Trang chủ</a></li>
+                    <li><a href="../../#about">Về chúng tôi</a></li>
+                    <li><a href="../../#projects">Dự án</a></li>
+                    <li><a href="../../#insights">Kiến thức</a></li>
+                    <li><a href="../">Bài viết</a></li>
+                    <li><a href="../../#contact">Liên hệ</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright"><p>&copy; 2025 Shanco Việt Nam</p></div>
     </div>
+</footer>
 
-    <h2>BIM thực sự là gì?</h2>
+<a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
 
-    <p>
-      BIM — viết tắt của <strong>Building Information Modeling</strong> — là một quy trình làm việc sử dụng mô hình số thông minh để lưu trữ và quản lý toàn bộ thông tin của một công trình. Mô hình BIM không chỉ là hình ảnh 3D — nó chứa đựng dữ liệu về vật liệu, chi phí, tiến độ, hiệu suất năng lượng, và nhiều hơn nữa.
-    </p>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+AOS.init({ duration: 800, easing: 'ease-in-out', once: true });
 
-    <p>
-      Hãy tưởng tượng bạn xây một ngôi nhà. Thay vì có hàng chục bản vẽ 2D rời rạc — mặt bằng, mặt cắt, chi tiết kết cấu, MEP — tất cả được hợp nhất trong một mô hình duy nhất. Khi bạn thay đổi một bức tường, tất cả bản vẽ liên quan tự động cập nhật. Khi kiến trúc sư, kỹ sư kết cấu và kỹ sư MEP cùng làm việc, họ có thể phát hiện va chạm (clash) ngay trong máy tính, trước khi thi công.
-    </p>
+const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+const navMenu = document.querySelector('.nav-menu');
+mobileNavToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+    const icon = mobileNavToggle.querySelector('i');
+    icon.classList.toggle('fa-bars');
+    icon.classList.toggle('fa-times');
+});
 
-    <div class="info-box">
-      <div class="info-box-title">📊 Con số đáng chú ý</div>
-      <p>Theo các nghiên cứu quốc tế, áp dụng BIM có thể giảm 20–30% chi phí phát sinh trong quá trình thi công, đồng thời rút ngắn tiến độ dự án đáng kể nhờ phát hiện xung đột sớm.</p>
-    </div>
-
-    <h2>Ba chiều của BIM</h2>
-
-    <p>Nhiều người nhầm tưởng BIM chỉ là 3D. Thực ra, BIM có nhiều "chiều" hơn thế:</p>
-
-    <ul>
-      <li><strong>3D:</strong> Mô hình không gian ba chiều — hình dạng, vị trí, quan hệ giữa các cấu kiện</li>
-      <li><strong>4D:</strong> Thêm chiều thời gian — liên kết mô hình với tiến độ thi công</li>
-      <li><strong>5D:</strong> Thêm chi phí — ước lượng và quản lý ngân sách trực tiếp từ mô hình</li>
-      <li><strong>6D:</strong> Thông tin vận hành — dữ liệu bảo trì, hiệu suất năng lượng sau khi bàn giao</li>
-    </ul>
-
-    <h2>Tại sao Việt Nam cần BIM ngay bây giờ?</h2>
-
-    <p>
-      Việt Nam đang trong giai đoạn đô thị hóa nhanh chóng. Hàng nghìn công trình nhà ở, thương mại và hạ tầng đang được xây dựng mỗi năm. Tuy nhiên, ngành xây dựng vẫn còn phụ thuộc nhiều vào bản vẽ 2D truyền thống và quy trình quản lý thủ công — dẫn đến chậm tiến độ, phát sinh chi phí và tranh chấp giữa các bên.
-    </p>
-
-    <p>
-      Quan trọng hơn, Chính phủ Việt Nam đã có <strong>Đề án BIM quốc gia</strong>, yêu cầu áp dụng BIM bắt buộc cho các dự án đầu tư công từ năm 2025. Điều này có nghĩa là các đơn vị chưa chuẩn bị năng lực BIM sẽ dần bị loại khỏi cuộc chơi đấu thầu.
-    </p>
-
-    <h3>Lợi ích cụ thể cho chủ đầu tư</h3>
-
-    <ul>
-      <li>Nhìn thấy ngôi nhà hoàn chỉnh trước khi xây — kể cả nội thất, ánh sáng, tầm nhìn</li>
-      <li>Phát hiện mâu thuẫn thiết kế sớm, tránh phá dỡ sửa chữa tốn kém</li>
-      <li>Quản lý tiến độ và chi phí minh bạch, theo thời gian thực</li>
-      <li>Nhận bộ hồ sơ "as-built" đầy đủ để bảo trì về sau</li>
-    </ul>
-
-    <hr class="divider" />
-
-    <h2>Shanco và BIM</h2>
-
-    <p>
-      Tại Shanco Việt Nam, BIM không phải là dịch vụ bổ sung — đây là nền tảng của mọi dự án chúng tôi thực hiện. Từ biệt thự nhỏ đến khách sạn nhiều tầng, tất cả đều được mô hình hóa đầy đủ bằng Revit và ArchiCAD trước khi thi công.
-    </p>
-
-    <p>
-      Điều này không chỉ giúp khách hàng thấy rõ sản phẩm trước khi đặt bút ký hợp đồng, mà còn đảm bảo mọi bên liên quan — từ kiến trúc sư, kỹ sư đến nhà thầu — đều làm việc dựa trên một nguồn thông tin duy nhất, nhất quán và cập nhật liên tục.
-    </p>
-
-  </article>
-
-  <div class="article-cta">
-    <div class="cta-box">
-      <h3>Bạn muốn dự án của mình được quản lý bằng BIM?</h3>
-      <p>Liên hệ với Shanco để được tư vấn miễn phí về ứng dụng BIM phù hợp với quy mô và ngân sách của bạn.</p>
-      <a href="/#contact" class="cta-btn">Liên hệ tư vấn</a>
-    </div>
-  </div>
-
-  <div class="back-link">
-    <a href="/kien-thuc/">← Quay lại danh sách bài viết</a>
-  </div>
-
-  <footer>
-    <p>© 2025 Shanco Việt Nam &nbsp;·&nbsp; <a href="mailto:shanco.vn@gmail.com">shanco.vn@gmail.com</a> &nbsp;·&nbsp; <a href="/">Trang chủ</a></p>
-  </footer>
-
+window.addEventListener('scroll', () => {
+    document.querySelector('.back-to-top').classList.toggle('show', window.pageYOffset > 300);
+    document.querySelector('.navbar').style.padding = window.pageYOffset > 50 ? '10px 0' : '15px 0';
+});
+</script>
 </body>
 </html>
